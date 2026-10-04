@@ -40,7 +40,7 @@
             // 
             // label1
             // 
-            label1.BackColor = Color.PaleGreen;
+            label1.BackColor = Color.Turquoise;
             label1.Dock = DockStyle.Top;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             label1.ForeColor = SystemColors.ControlLightLight;
@@ -90,7 +90,7 @@
             // MniInfo
             // 
             MniInfo.Name = "MniInfo";
-            MniInfo.Size = new Size(180, 22);
+            MniInfo.Size = new Size(104, 22);
             MniInfo.Text = "Info...";
             // 
             // Form1

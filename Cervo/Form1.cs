@@ -13,7 +13,7 @@ namespace Cervo
             //TODO: mettere un menu
             //TODO: file di utility
             //TODO: file informativa
-
+            this.Text = Utility.TitoloFinestra;
         }
 
         private void MniEsci_Click(object sender, EventArgs e)

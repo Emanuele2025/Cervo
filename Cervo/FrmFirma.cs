@@ -20,6 +20,7 @@ namespace Cervo
         private void FrmFirma_Load(object sender, EventArgs e)
         {
             //3 ottobre rivedere
+            this.Text = Utility.TitoloFinestra;
         }
 
 

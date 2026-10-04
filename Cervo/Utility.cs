@@ -11,7 +11,7 @@ namespace Cervo
 
 
 
-        public const string TitoloFinestra = "Cervo - Programma gratuito per la gestione delle attività";
+        public const string TitoloFinestra = "Cervo - Programma gratuito per la gestione della firma digitale";
         const string titolo = "Cervo";
 
 

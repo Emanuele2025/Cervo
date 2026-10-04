@@ -31,6 +31,8 @@
             label1 = new Label();
             comboBox1 = new ComboBox();
             BtnFirma = new Button();
+            label2 = new Label();
+            BtnChiudi = new Button();
             SuspendLayout();
             // 
             // label1
@@ -60,15 +62,44 @@
             BtnFirma.UseVisualStyleBackColor = true;
             BtnFirma.Click += BtnFirma_Click;
             // 
+            // label2
+            // 
+            label2.BackColor = Color.Turquoise;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(828, 22);
+            label2.TabIndex = 8;
+            label2.Text = "Cervo - Firma dei file";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // BtnChiudi
+            // 
+            BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Location = new Point(741, 415);
+            BtnChiudi.Name = "BtnChiudi";
+            BtnChiudi.Size = new Size(75, 23);
+            BtnChiudi.TabIndex = 9;
+            BtnChiudi.Text = "Chiudi";
+            BtnChiudi.UseVisualStyleBackColor = true;
+            // 
             // FrmFirma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(828, 450);
+            Controls.Add(BtnChiudi);
+            Controls.Add(label2);
             Controls.Add(BtnFirma);
             Controls.Add(comboBox1);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmFirma";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmFirma";
             Load += FrmFirma_Load;
             ResumeLayout(false);
@@ -80,5 +111,7 @@
         private Label label1;
         private ComboBox comboBox1;
         private Button BtnFirma;
+        private Label label2;
+        private Button BtnChiudi;
     }
 }
