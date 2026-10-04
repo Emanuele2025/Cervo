@@ -15,5 +15,10 @@ namespace Cervo
             //TODO: file informativa
 
         }
+
+        private void MniEsci_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
