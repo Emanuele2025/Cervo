@@ -47,15 +47,15 @@ namespace Cervo
                 }
                 else
                 {
-                    MessageBox.Show("Nessun certificato disponibile con chiave privata.",
-                    "Avviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Utility.MessaggioInfo("Nessun certificato disponibile con chiave privata.");
+                    
                 }
                 store.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Errore nel caricamento dei certificati: {ex.Message}",
-                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioErrore(Utility.Errore + ex.Message );
+                 
             }
         }
         #endregion
@@ -112,10 +112,15 @@ namespace Cervo
             //"Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             //}
         }
+
+        private void BtnChiudi_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 
-      class CertificateItem
+    class CertificateItem
     {
         public string DisplayName { get; set; }
         public X509Certificate2 Certificate { get; set; }

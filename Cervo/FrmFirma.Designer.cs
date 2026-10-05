@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            CmbCertificati = new ComboBox();
             BtnFirma = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
@@ -44,13 +44,13 @@
             label1.TabIndex = 0;
             label1.Text = "Certificati:";
             // 
-            // comboBox1
+            // CmbCertificati
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(20, 132);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(370, 23);
-            comboBox1.TabIndex = 1;
+            CmbCertificati.FormattingEnabled = true;
+            CmbCertificati.Location = new Point(20, 132);
+            CmbCertificati.Name = "CmbCertificati";
+            CmbCertificati.Size = new Size(370, 23);
+            CmbCertificati.TabIndex = 1;
             // 
             // BtnFirma
             // 
@@ -84,6 +84,7 @@
             BtnChiudi.TabIndex = 9;
             BtnChiudi.Text = "Chiudi";
             BtnChiudi.UseVisualStyleBackColor = true;
+            BtnChiudi.Click += BtnChiudi_Click;
             // 
             // FrmFirma
             // 
@@ -93,7 +94,7 @@
             Controls.Add(BtnChiudi);
             Controls.Add(label2);
             Controls.Add(BtnFirma);
-            Controls.Add(comboBox1);
+            Controls.Add(CmbCertificati);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
@@ -109,7 +110,7 @@
         #endregion
 
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox CmbCertificati;
         private Button BtnFirma;
         private Label label2;
         private Button BtnChiudi;
