@@ -35,6 +35,9 @@
             funzionalitàToolStripMenuItem = new ToolStripMenuItem();
             informazioniToolStripMenuItem = new ToolStripMenuItem();
             MniInfo = new ToolStripMenuItem();
+            MniListaCertificati = new ToolStripMenuItem();
+            MniStrumenti = new ToolStripMenuItem();
+            MniFirma = new ToolStripMenuItem();
             MnsMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,12 +73,13 @@
             // MniEsci
             // 
             MniEsci.Name = "MniEsci";
-            MniEsci.Size = new Size(180, 22);
+            MniEsci.Size = new Size(94, 22);
             MniEsci.Text = "Esci";
             MniEsci.Click += MniEsci_Click;
             // 
             // funzionalitàToolStripMenuItem
             // 
+            funzionalitàToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MniListaCertificati, MniStrumenti, MniFirma });
             funzionalitàToolStripMenuItem.Name = "funzionalitàToolStripMenuItem";
             funzionalitàToolStripMenuItem.Size = new Size(83, 20);
             funzionalitàToolStripMenuItem.Text = "Funzionalità";
@@ -92,6 +96,25 @@
             MniInfo.Name = "MniInfo";
             MniInfo.Size = new Size(104, 22);
             MniInfo.Text = "Info...";
+            // 
+            // MniListaCertificati
+            // 
+            MniListaCertificati.Name = "MniListaCertificati";
+            MniListaCertificati.Size = new Size(180, 22);
+            MniListaCertificati.Text = "Lista Certificati...";
+            // 
+            // MniStrumenti
+            // 
+            MniStrumenti.Name = "MniStrumenti";
+            MniStrumenti.Size = new Size(180, 22);
+            MniStrumenti.Text = "Strumenti...";
+            MniStrumenti.Click += MniStrumenti_Click;
+            // 
+            // MniFirma
+            // 
+            MniFirma.Name = "MniFirma";
+            MniFirma.Size = new Size(180, 22);
+            MniFirma.Text = "Firma...";
             // 
             // Form1
             // 
@@ -119,5 +142,8 @@
         private ToolStripMenuItem funzionalitàToolStripMenuItem;
         private ToolStripMenuItem informazioniToolStripMenuItem;
         private ToolStripMenuItem MniInfo;
+        private ToolStripMenuItem MniListaCertificati;
+        private ToolStripMenuItem MniStrumenti;
+        private ToolStripMenuItem MniFirma;
     }
 }

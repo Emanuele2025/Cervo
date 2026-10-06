@@ -20,5 +20,11 @@ namespace Cervo
         {
             this.Close();
         }
+
+        private void MniStrumenti_Click(object sender, EventArgs e)
+        {
+            FrmStrumenti strumenti = new FrmStrumenti();
+            strumenti.ShowDialog();
+        }
     }
 }
