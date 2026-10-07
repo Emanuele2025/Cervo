@@ -21,7 +21,7 @@ namespace Cervo
 
         private void FrmStrumenti_Load(object sender, EventArgs e)
         {
-
+            this.Text = Utility.TitoloFinestra;
         }
 
         public static SignatureInfo VerifySignature(string p7mFilePath)
@@ -264,6 +264,11 @@ namespace Cervo
             {
                 MessageBox.Show($"Errore: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BtnVerificaFirma_Click(object sender, EventArgs e)
+        {
+         //   ValidaFirma.
         }
     }
 }

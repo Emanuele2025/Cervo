@@ -30,20 +30,24 @@
         {
             tabControl1 = new TabControl();
             TbpCertificato = new TabPage();
+            BtnEstraiCertificato = new Button();
+            rtbResults = new RichTextBox();
             BtnVerificaCertificato = new Button();
             TxtPercorsoFileFirmato = new TextBox();
             BtnTrovaFileP7m = new Button();
-            tabPage2 = new TabPage();
-            rtbResults = new RichTextBox();
-            BtnEstraiCertificato = new Button();
+            TbpVerifica = new TabPage();
+            BtnVerificaFirma = new Button();
+            textBox1 = new TextBox();
+            button3 = new Button();
             tabControl1.SuspendLayout();
             TbpCertificato.SuspendLayout();
+            TbpVerifica.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
             tabControl1.Controls.Add(TbpCertificato);
-            tabControl1.Controls.Add(tabPage2);
+            tabControl1.Controls.Add(TbpVerifica);
             tabControl1.Location = new Point(12, 111);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
@@ -64,6 +68,24 @@
             TbpCertificato.TabIndex = 0;
             TbpCertificato.Text = "Certificato";
             TbpCertificato.UseVisualStyleBackColor = true;
+            // 
+            // BtnEstraiCertificato
+            // 
+            BtnEstraiCertificato.Location = new Point(119, 83);
+            BtnEstraiCertificato.Name = "BtnEstraiCertificato";
+            BtnEstraiCertificato.Size = new Size(112, 23);
+            BtnEstraiCertificato.TabIndex = 4;
+            BtnEstraiCertificato.Text = "Estrai";
+            BtnEstraiCertificato.UseVisualStyleBackColor = true;
+            BtnEstraiCertificato.Click += BtnEstraiCertificato_Click;
+            // 
+            // rtbResults
+            // 
+            rtbResults.Location = new Point(409, 22);
+            rtbResults.Name = "rtbResults";
+            rtbResults.Size = new Size(334, 235);
+            rtbResults.TabIndex = 3;
+            rtbResults.Text = "";
             // 
             // BtnVerificaCertificato
             // 
@@ -92,33 +114,44 @@
             BtnTrovaFileP7m.UseVisualStyleBackColor = true;
             BtnTrovaFileP7m.Click += BtnTrovaFileP7m_Click;
             // 
-            // tabPage2
+            // TbpVerifica
             // 
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(768, 278);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
+            TbpVerifica.Controls.Add(BtnVerificaFirma);
+            TbpVerifica.Controls.Add(textBox1);
+            TbpVerifica.Controls.Add(button3);
+            TbpVerifica.Location = new Point(4, 24);
+            TbpVerifica.Name = "TbpVerifica";
+            TbpVerifica.Padding = new Padding(3);
+            TbpVerifica.Size = new Size(768, 278);
+            TbpVerifica.TabIndex = 1;
+            TbpVerifica.Text = "Verifica Firma";
+            TbpVerifica.UseVisualStyleBackColor = true;
             // 
-            // rtbResults
+            // BtnVerificaFirma
             // 
-            rtbResults.Location = new Point(409, 22);
-            rtbResults.Name = "rtbResults";
-            rtbResults.Size = new Size(334, 235);
-            rtbResults.TabIndex = 3;
-            rtbResults.Text = "";
+            BtnVerificaFirma.Location = new Point(25, 49);
+            BtnVerificaFirma.Name = "BtnVerificaFirma";
+            BtnVerificaFirma.Size = new Size(75, 23);
+            BtnVerificaFirma.TabIndex = 7;
+            BtnVerificaFirma.Text = "Verifica";
+            BtnVerificaFirma.UseVisualStyleBackColor = true;
+            BtnVerificaFirma.Click += BtnVerificaFirma_Click;
             // 
-            // BtnEstraiCertificato
+            // textBox1
             // 
-            BtnEstraiCertificato.Location = new Point(119, 83);
-            BtnEstraiCertificato.Name = "BtnEstraiCertificato";
-            BtnEstraiCertificato.Size = new Size(112, 23);
-            BtnEstraiCertificato.TabIndex = 4;
-            BtnEstraiCertificato.Text = "Estrai";
-            BtnEstraiCertificato.UseVisualStyleBackColor = true;
-            BtnEstraiCertificato.Click += BtnEstraiCertificato_Click;
+            textBox1.Location = new Point(18, 18);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(311, 23);
+            textBox1.TabIndex = 6;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(335, 18);
+            button3.Name = "button3";
+            button3.Size = new Size(31, 23);
+            button3.TabIndex = 5;
+            button3.Text = "...";
+            button3.UseVisualStyleBackColor = true;
             // 
             // FrmStrumenti
             // 
@@ -133,6 +166,8 @@
             tabControl1.ResumeLayout(false);
             TbpCertificato.ResumeLayout(false);
             TbpCertificato.PerformLayout();
+            TbpVerifica.ResumeLayout(false);
+            TbpVerifica.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -140,11 +175,14 @@
 
         private TabControl tabControl1;
         private TabPage TbpCertificato;
-        private TabPage tabPage2;
+        private TabPage TbpVerifica;
         private Button BtnVerificaCertificato;
         private TextBox TxtPercorsoFileFirmato;
         private Button BtnTrovaFileP7m;
         private RichTextBox rtbResults;
         private Button BtnEstraiCertificato;
+        private Button BtnVerificaFirma;
+        private TextBox textBox1;
+        private Button button3;
     }
 }
