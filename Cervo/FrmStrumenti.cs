@@ -225,8 +225,7 @@ namespace Cervo
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Errore nella verifica: {ex.Message}", "Errore",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
         }
 
@@ -262,7 +261,8 @@ namespace Cervo
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Errore: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
+                
             }
         }
 
