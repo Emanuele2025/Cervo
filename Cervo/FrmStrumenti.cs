@@ -262,13 +262,18 @@ namespace Cervo
             catch (Exception ex)
             {
                 Utility.MessaggioErrore(Utility.Errore + ex.Message);
-                
+
             }
         }
 
         private void BtnVerificaFirma_Click(object sender, EventArgs e)
         {
-         //   ValidaFirma.
+            //   ValidaFirma.
+        }
+
+        private void BtnChiudi_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

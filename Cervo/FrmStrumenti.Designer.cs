@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            tabControl1 = new TabControl();
+            TbcFunzionalita = new TabControl();
             TbpCertificato = new TabPage();
             BtnEstraiCertificato = new Button();
             rtbResults = new RichTextBox();
@@ -39,20 +39,23 @@
             BtnVerificaFirma = new Button();
             textBox1 = new TextBox();
             button3 = new Button();
-            tabControl1.SuspendLayout();
+            label2 = new Label();
+            BtnChiudi = new Button();
+            TbcFunzionalita.SuspendLayout();
             TbpCertificato.SuspendLayout();
             TbpVerifica.SuspendLayout();
             SuspendLayout();
             // 
-            // tabControl1
+            // TbcFunzionalita
             // 
-            tabControl1.Controls.Add(TbpCertificato);
-            tabControl1.Controls.Add(TbpVerifica);
-            tabControl1.Location = new Point(12, 111);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(776, 306);
-            tabControl1.TabIndex = 0;
+            TbcFunzionalita.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            TbcFunzionalita.Controls.Add(TbpCertificato);
+            TbcFunzionalita.Controls.Add(TbpVerifica);
+            TbcFunzionalita.Location = new Point(0, 25);
+            TbcFunzionalita.Name = "TbcFunzionalita";
+            TbcFunzionalita.SelectedIndex = 0;
+            TbcFunzionalita.Size = new Size(800, 281);
+            TbcFunzionalita.TabIndex = 0;
             // 
             // TbpCertificato
             // 
@@ -122,14 +125,14 @@
             TbpVerifica.Location = new Point(4, 24);
             TbpVerifica.Name = "TbpVerifica";
             TbpVerifica.Padding = new Padding(3);
-            TbpVerifica.Size = new Size(768, 278);
+            TbpVerifica.Size = new Size(792, 253);
             TbpVerifica.TabIndex = 1;
             TbpVerifica.Text = "Verifica Firma";
             TbpVerifica.UseVisualStyleBackColor = true;
             // 
             // BtnVerificaFirma
             // 
-            BtnVerificaFirma.Location = new Point(25, 49);
+            BtnVerificaFirma.Location = new Point(18, 47);
             BtnVerificaFirma.Name = "BtnVerificaFirma";
             BtnVerificaFirma.Size = new Size(75, 23);
             BtnVerificaFirma.TabIndex = 7;
@@ -153,17 +156,43 @@
             button3.Text = "...";
             button3.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            label2.BackColor = Color.Turquoise;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(800, 22);
+            label2.TabIndex = 9;
+            label2.Text = "Cervo - Funzionalità per la gestione della firma digitale";
+            label2.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // BtnChiudi
+            // 
+            BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Location = new Point(713, 415);
+            BtnChiudi.Name = "BtnChiudi";
+            BtnChiudi.Size = new Size(75, 23);
+            BtnChiudi.TabIndex = 10;
+            BtnChiudi.Text = "Chiudi";
+            BtnChiudi.UseVisualStyleBackColor = true;
+            BtnChiudi.Click += BtnChiudi_Click;
+            // 
             // FrmStrumenti
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(tabControl1);
+            Controls.Add(BtnChiudi);
+            Controls.Add(label2);
+            Controls.Add(TbcFunzionalita);
             Name = "FrmStrumenti";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cervo";
             Load += FrmStrumenti_Load;
-            tabControl1.ResumeLayout(false);
+            TbcFunzionalita.ResumeLayout(false);
             TbpCertificato.ResumeLayout(false);
             TbpCertificato.PerformLayout();
             TbpVerifica.ResumeLayout(false);
@@ -173,7 +202,7 @@
 
         #endregion
 
-        private TabControl tabControl1;
+        private TabControl TbcFunzionalita;
         private TabPage TbpCertificato;
         private TabPage TbpVerifica;
         private Button BtnVerificaCertificato;
@@ -184,5 +213,7 @@
         private Button BtnVerificaFirma;
         private TextBox textBox1;
         private Button button3;
+        private Label label2;
+        private Button BtnChiudi;
     }
 }

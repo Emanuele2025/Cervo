@@ -28,19 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            label2 = new Label();
             SuspendLayout();
+            // 
+            // label2
+            // 
+            label2.BackColor = Color.Turquoise;
+            label2.Dock = DockStyle.Top;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(0, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(800, 22);
+            label2.TabIndex = 9;
+            label2.Text = "Cervo - Lista dei certificati";
+            label2.TextAlign = ContentAlignment.TopCenter;
             // 
             // FrmListaCertificati
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Name = "FrmListaCertificati";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmListaCertificati";
             Load += FrmListaCertificati_Load;
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Label label2;
     }
 }

@@ -17,7 +17,7 @@ namespace Cervo
 
         private void FrmListaCertificati_Load(object sender, EventArgs e)
         {
-
+            this.Text = Utility.TitoloFinestra;
         }
     }
 }
