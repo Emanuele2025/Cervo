@@ -275,5 +275,176 @@ namespace Cervo
         {
             this.Close();
         }
+
+
+        #region Funzione Verifica Firma
+
+        /// <summary>
+        /// Verifica se il certificato in un file .p7m è scaduto o revocato
+        /// </summary>
+        /// <param name="p7mFilePath">Percorso completo del file .p7m</param>
+        /// <returns>Risultato della verifica con dettagli dello stato del certificato</returns>
+        public static P7mCertificateCheckResult CheckP7mCertificateStatus(string p7mFilePath)
+        {
+            var result = new P7mCertificateCheckResult();
+
+            try
+            {
+                // Verifica se il file esiste
+                if (!File.Exists(p7mFilePath))
+                {
+                    result.IsValid = false;
+                    result.StatusMessage = $"File non trovato: {p7mFilePath}";
+                    return result;
+                }
+
+                // Verifica se ha estensione .p7m
+                if (!p7mFilePath.EndsWith(".p7m", StringComparison.OrdinalIgnoreCase))
+                {
+                    result.IsValid = false;
+                    result.StatusMessage = "Il file non ha estensione .p7m";
+                    return result;
+                }
+
+                // Leggi il contenuto del file
+                byte[] fileContent = File.ReadAllBytes(p7mFilePath);
+
+                // Decodifica il file PKCS#7
+                SignedCms signedCms = new SignedCms();
+                signedCms.Decode(fileContent);
+
+                // Verifica se sono presenti certificati
+                if (signedCms.Certificates.Count == 0)
+                {
+                    result.IsValid = false;
+                    result.StatusMessage = "Nessun certificato trovato nel file .p7m";
+                    return result;
+                }
+
+                // Estrai il certificato firmante (il primo)
+                X509Certificate2 signingCert = signedCms.Certificates[0];
+
+                // Utilizza CertificateValidator per validare il certificato
+                //CertificateValidationResult certValidationResult = ValidaFirma.ValidateCertificate(signingCert);
+
+                //// Popola il risultato
+                //result.IsValid = certValidationResult.IsValid;
+                //result.StatusMessage = certValidationResult.ErrorMessage;
+                //result.IsExpired = certValidationResult.IsExpired;
+                //result.IsRevoked = certValidationResult.IsRevoked;
+                //result.Subject = certValidationResult.Subject;
+                //result.Issuer = certValidationResult.Issuer;
+                //result.Thumbprint = certValidationResult.Thumbprint;
+                //result.NotBefore = signingCert.NotBefore;
+                //result.NotAfter = signingCert.NotAfter;
+                //result.SerialNumber = signingCert.SerialNumber;
+
+                // Calcola giorni rimanenti fino alla scadenza
+                //if (!certValidationResult.IsExpired)
+                //{
+                //    result.DaysUntilExpiration = (int)(signingCert.NotAfter - DateTime.UtcNow).TotalDays;
+                //}
+
+                return result;
+            }
+            catch (CryptographicException ex)
+            {
+                result.IsValid = false;
+                result.StatusMessage = $"Errore nella decodifica del file .p7m: {ex.Message}";
+                return result;
+            }
+            catch (Exception ex)
+            {
+                result.IsValid = false;
+                result.StatusMessage = $"Errore durante la verifica: {ex.Message}";
+                return result;
+            }
+        }
+
+
+
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
+    /// <summary>
+    /// Risultato della verifica dello stato del certificato in un file .p7m
+    /// </summary>
+    public class P7mCertificateCheckResult
+    {
+        /// <summary>
+        /// Indica se il certificato è valido (non scaduto e non revocato)
+        /// </summary>
+        public bool IsValid { get; set; }
+
+        /// <summary>
+        /// Messaggio di stato (valido, scaduto, revocato, ecc.)
+        /// </summary>
+        public string StatusMessage { get; set; }
+
+        /// <summary>
+        /// True se il certificato è scaduto
+        /// </summary>
+        public bool IsExpired { get; set; }
+
+        /// <summary>
+        /// True se il certificato è revocato
+        /// </summary>
+        public bool IsRevoked { get; set; }
+
+        /// <summary>
+        /// Subject del certificato
+        /// </summary>
+        public string Subject { get; set; }
+
+        /// <summary>
+        /// Issuer del certificato
+        /// </summary>
+        public string Issuer { get; set; }
+
+        /// <summary>
+        /// Thumbprint (impronta) del certificato
+        /// </summary>
+        public string Thumbprint { get; set; }
+
+        /// <summary>
+        /// Data di inizio validità del certificato
+        /// </summary>
+        public DateTime NotBefore { get; set; }
+
+        /// <summary>
+        /// Data di fine validità del certificato
+        /// </summary>
+        public DateTime NotAfter { get; set; }
+
+        /// <summary>
+        /// Numero seriale del certificato
+        /// </summary>
+        public string SerialNumber { get; set; }
+
+        /// <summary>
+        /// Giorni rimanenti fino alla scadenza (null se scaduto)
+        /// </summary>
+        public int? DaysUntilExpiration { get; set; }
+    }
+
 }

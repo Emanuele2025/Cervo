@@ -41,9 +41,14 @@
             button3 = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
+            TbpVerificaFirma = new TabPage();
+            button1 = new Button();
+            textBox2 = new TextBox();
+            button2 = new Button();
             TbcFunzionalita.SuspendLayout();
             TbpCertificato.SuspendLayout();
             TbpVerifica.SuspendLayout();
+            TbpVerificaFirma.SuspendLayout();
             SuspendLayout();
             // 
             // TbcFunzionalita
@@ -51,6 +56,7 @@
             TbcFunzionalita.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             TbcFunzionalita.Controls.Add(TbpCertificato);
             TbcFunzionalita.Controls.Add(TbpVerifica);
+            TbcFunzionalita.Controls.Add(TbpVerificaFirma);
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
@@ -67,7 +73,7 @@
             TbpCertificato.Location = new Point(4, 24);
             TbpCertificato.Name = "TbpCertificato";
             TbpCertificato.Padding = new Padding(3);
-            TbpCertificato.Size = new Size(768, 278);
+            TbpCertificato.Size = new Size(792, 253);
             TbpCertificato.TabIndex = 0;
             TbpCertificato.Text = "Certificato";
             TbpCertificato.UseVisualStyleBackColor = true;
@@ -180,6 +186,43 @@
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 
+            // TbpVerificaFirma
+            // 
+            TbpVerificaFirma.Controls.Add(button1);
+            TbpVerificaFirma.Controls.Add(textBox2);
+            TbpVerificaFirma.Controls.Add(button2);
+            TbpVerificaFirma.Location = new Point(4, 24);
+            TbpVerificaFirma.Name = "TbpVerificaFirma";
+            TbpVerificaFirma.Size = new Size(792, 253);
+            TbpVerificaFirma.TabIndex = 2;
+            TbpVerificaFirma.Text = "Verifica Frima";
+            TbpVerificaFirma.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(8, 60);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 10;
+            button1.Text = "Verifica";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(8, 31);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(311, 23);
+            textBox2.TabIndex = 9;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(325, 31);
+            button2.Name = "button2";
+            button2.Size = new Size(31, 23);
+            button2.TabIndex = 8;
+            button2.Text = "...";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // FrmStrumenti
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -197,6 +240,8 @@
             TbpCertificato.PerformLayout();
             TbpVerifica.ResumeLayout(false);
             TbpVerifica.PerformLayout();
+            TbpVerificaFirma.ResumeLayout(false);
+            TbpVerificaFirma.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -215,5 +260,9 @@
         private Button button3;
         private Label label2;
         private Button BtnChiudi;
+        private TabPage TbpVerificaFirma;
+        private Button button1;
+        private TextBox textBox2;
+        private Button button2;
     }
 }

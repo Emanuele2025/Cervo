@@ -354,7 +354,7 @@ namespace Cervo.Models
     /// <summary>
     /// Classe per i risultati della validazione
     /// </summary>
-    public class ValidationResult
+    public   class ValidationResult
     {
         public X509Certificate2 Certificate { get; set; }
         public string Subject { get; set; }
