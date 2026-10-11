@@ -23,8 +23,19 @@ namespace Cervo
 
         private void MniStrumenti_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             FrmStrumenti strumenti = new FrmStrumenti();
             strumenti.ShowDialog();
+            Cursor.Current = Cursors.Default;
+        }
+
+        private void MniListaCertificati_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            FrmListaCertificati frmListaCertificati = new FrmListaCertificati();
+            frmListaCertificati.ShowDialog();
+            Cursor.Current = Cursors.Default;
+
         }
     }
 }

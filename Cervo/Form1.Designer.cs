@@ -33,11 +33,11 @@
             fileToolStripMenuItem = new ToolStripMenuItem();
             MniEsci = new ToolStripMenuItem();
             funzionalitàToolStripMenuItem = new ToolStripMenuItem();
-            informazioniToolStripMenuItem = new ToolStripMenuItem();
-            MniInfo = new ToolStripMenuItem();
             MniListaCertificati = new ToolStripMenuItem();
             MniStrumenti = new ToolStripMenuItem();
             MniFirma = new ToolStripMenuItem();
+            informazioniToolStripMenuItem = new ToolStripMenuItem();
+            MniInfo = new ToolStripMenuItem();
             MnsMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -84,24 +84,12 @@
             funzionalitàToolStripMenuItem.Size = new Size(83, 20);
             funzionalitàToolStripMenuItem.Text = "Funzionalità";
             // 
-            // informazioniToolStripMenuItem
-            // 
-            informazioniToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MniInfo });
-            informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
-            informazioniToolStripMenuItem.Size = new Size(86, 20);
-            informazioniToolStripMenuItem.Text = "Informazioni";
-            // 
-            // MniInfo
-            // 
-            MniInfo.Name = "MniInfo";
-            MniInfo.Size = new Size(104, 22);
-            MniInfo.Text = "Info...";
-            // 
             // MniListaCertificati
             // 
             MniListaCertificati.Name = "MniListaCertificati";
             MniListaCertificati.Size = new Size(180, 22);
             MniListaCertificati.Text = "Lista Certificati...";
+            MniListaCertificati.Click += MniListaCertificati_Click;
             // 
             // MniStrumenti
             // 
@@ -115,6 +103,19 @@
             MniFirma.Name = "MniFirma";
             MniFirma.Size = new Size(180, 22);
             MniFirma.Text = "Firma...";
+            // 
+            // informazioniToolStripMenuItem
+            // 
+            informazioniToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { MniInfo });
+            informazioniToolStripMenuItem.Name = "informazioniToolStripMenuItem";
+            informazioniToolStripMenuItem.Size = new Size(86, 20);
+            informazioniToolStripMenuItem.Text = "Informazioni";
+            // 
+            // MniInfo
+            // 
+            MniInfo.Name = "MniInfo";
+            MniInfo.Size = new Size(180, 22);
+            MniInfo.Text = "Info...";
             // 
             // Form1
             // 

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             label2 = new Label();
+            DtgListaCertificati = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)DtgListaCertificati).BeginInit();
             SuspendLayout();
             // 
             // label2
@@ -44,21 +46,33 @@
             label2.Text = "Cervo - Lista dei certificati";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
+            // DtgListaCertificati
+            // 
+            DtgListaCertificati.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DtgListaCertificati.Dock = DockStyle.Top;
+            DtgListaCertificati.Location = new Point(0, 22);
+            DtgListaCertificati.Name = "DtgListaCertificati";
+            DtgListaCertificati.Size = new Size(800, 245);
+            DtgListaCertificati.TabIndex = 10;
+            // 
             // FrmListaCertificati
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DtgListaCertificati);
             Controls.Add(label2);
             Name = "FrmListaCertificati";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmListaCertificati";
             Load += FrmListaCertificati_Load;
+            ((System.ComponentModel.ISupportInitialize)DtgListaCertificati).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Label label2;
+        private DataGridView DtgListaCertificati;
     }
 }
