@@ -9,6 +9,7 @@ using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Windows.Forms;
+using static Cervo.Models.CertificateValidator;
 
 namespace Cervo
 {
@@ -377,6 +378,100 @@ namespace Cervo
 
 
 
+
+
+
+
+
+
+
+
+        private void BtnVerificaCertificatoFirmato_Click(object sender, EventArgs e)
+        {
+            //TODO: Controllo
+            VerificaCertificatoDaFileFirmato(TxtPercorsoFileFirmatoDigitalmente.Text);
+        }
+
+        private void BtnTrovaCertificatoFileFirmato_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file P7M";
+                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m|Tutti i file (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoFileFirmatoDigitalmente.Text = openFileDialog.FileName;
+                }
+            }
+        }
+
+
+        #region VerificaCertificato
+
+        private void VerificaCertificatoDaFileFirmato(string percorso)
+        {
+
+
+            // Verifica se il file esiste
+            if (!File.Exists(percorso))
+            {
+                //result.IsValid = false;
+                //result.StatusMessage = $"File non trovato: {p7mFilePath}";
+                //return result;
+            }
+
+            // Verifica se ha estensione .p7m
+            if (!percorso.EndsWith(".p7m", StringComparison.OrdinalIgnoreCase))
+            {
+                //result.IsValid = false;
+                //result.StatusMessage = "Il file non ha estensione .p7m";
+                //return result;
+            }
+
+            // Leggi il contenuto del file
+            byte[] fileContent = File.ReadAllBytes(percorso);
+
+            // Decodifica il file PKCS#7
+            SignedCms signedCms = new SignedCms();
+            signedCms.Decode(fileContent);
+
+            // Verifica se sono presenti certificati
+            if (signedCms.Certificates.Count == 0)
+            {
+                //result.IsValid = false;
+                //result.StatusMessage = "Nessun certificato trovato nel file .p7m";
+                //return result;
+            }
+
+            // Estrai il certificato firmante (il primo)
+            X509Certificate2 signingCert = signedCms.Certificates[0];
+            var risultato = Certificati.ValidateCertificate2(signingCert);
+            string message = $"Stato validazione: {(risultato.IsValid ? "✓ VALIDO" : "✗ NON VALIDO")}\n\n";
+
+            message += $"Messaggio: {risultato.ErrorMessage}\n\n";
+
+            if (risultato.IsValid)
+            {
+                message += $"Subject: {risultato.Subject}\n";
+                message += $"Issuer: {risultato.Issuer}\n";
+                message += $"Valido da: {risultato.NotBefore:dd/MM/yyyy HH:mm:ss}\n";
+                message += $"Valido fino a: {risultato.NotAfter:dd/MM/yyyy HH:mm:ss}\n";
+                message += $"Giorni rimanenti: {risultato.DaysUntilExpiration}\n";
+                message += $"Thumbprint: {risultato.Thumbprint}\n";
+            }
+
+            MessageBox.Show(message, "Risultato Validazione", MessageBoxButtons.OK,
+                risultato.IsValid ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+
+
+        }
+
+
+
+
+
+        #endregion
 
 
 

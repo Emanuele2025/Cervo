@@ -338,7 +338,7 @@ namespace Cervo.Models
     /// <summary>
     /// Enum per lo stato di validazione
     /// </summary>
-    public   enum ValidationStatus
+    public enum ValidationStatus
     {
         Unknown,
         Valid,
@@ -354,7 +354,7 @@ namespace Cervo.Models
     /// <summary>
     /// Classe per i risultati della validazione
     /// </summary>
-    public   class ValidationResult
+    public class ValidationResult
     {
         public X509Certificate2 Certificate { get; set; }
         public string Subject { get; set; }
@@ -403,6 +403,178 @@ namespace Cervo.Models
         public Exception Error { get; set; }
     }
 
+
+
+
+    public class CertificateValidator
+    {
+        /// <summary>
+        /// Valida un certificato verificando se è scaduto
+        /// </summary>
+        public static bool IsCertificateExpired(X509Certificate2 certificate)
+        {
+            if (certificate == null)
+                return true;
+
+            DateTime now = DateTime.UtcNow;
+            DateTime notAfter = certificate.NotAfter;
+
+            return now > notAfter;
+        }
+
+        /// <summary>
+        /// Valida un certificato verificando se è ancora valido
+        /// </summary>
+        public static bool IsCertificateValid(X509Certificate2 certificate)
+        {
+            if (certificate == null)
+                return false;
+
+            DateTime now = DateTime.UtcNow;
+            DateTime notBefore = certificate.NotBefore;
+            DateTime notAfter = certificate.NotAfter;
+
+            return now >= notBefore && now <= notAfter;
+        }
+
+        public static class Certificati
+        {
+
+
+            /// <summary>
+            /// Ottiene informazioni dettagliate sulla validità del certificato
+            /// </summary>
+            public static CertificateValidationResult ValidateCertificate2(X509Certificate2 certificate)
+            {
+                var result = new CertificateValidationResult();
+
+                if (certificate == null)
+                {
+                    result.IsValid = false;
+                    result.ErrorMessage = "Certificato non trovato";
+                    return result;
+                }
+
+                // Verifica data di inizio validità
+                if (DateTime.UtcNow < certificate.NotBefore)
+                {
+                    result.IsValid = false;
+                    result.ErrorMessage = $"Certificato non ancora valido. Diventerà valido il: {certificate.NotBefore:dd/MM/yyyy HH:mm:ss}";
+                    return result;
+                }
+
+                // Verifica data di scadenza
+                if (DateTime.UtcNow > certificate.NotAfter)
+                {
+                    result.IsValid = false;
+                    result.ErrorMessage = $"Certificato scaduto il: {certificate.NotAfter:dd/MM/yyyy HH:mm:ss}";
+                    return result;
+                }
+
+                // Verifica validità della catena
+                var chain = new X509Chain();
+                chain.ChainPolicy.RevocationMode = X509RevocationMode.Online;
+                chain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
+                chain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
+
+                bool chainIsValid = chain.Build(certificate);
+
+                if (!chainIsValid)
+                {
+                    result.IsValid = false;
+                    result.ChainStatus = chain.ChainStatus;
+
+                    foreach (var status in chain.ChainStatus)
+                    {
+                        result.ErrorMessage += $"{status.Status}: {status.StatusInformation}\n";
+                    }
+                    return result;
+                }
+
+                result.IsValid = true;
+                result.ErrorMessage = "Certificato valido";
+                result.NotBefore = certificate.NotBefore;
+                result.NotAfter = certificate.NotAfter;
+                result.Subject = certificate.Subject;
+                result.Issuer = certificate.Issuer;
+                result.Thumbprint = certificate.Thumbprint;
+
+                return result;
+            }
+
+            /// <summary>
+            /// Carica un certificato da file
+            /// </summary>
+            public static X509Certificate2 LoadCertificateFromFile(string filePath, string password = null)
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(password))
+                        return new X509Certificate2(filePath);
+                    else
+                        return new X509Certificate2(filePath, password);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Errore nel caricamento del certificato: {ex.Message}");
+                }
+            }
+
+            /// <summary>
+            /// Carica un certificato dallo store del sistema
+            /// </summary>
+            public static X509Certificate2 LoadCertificateFromStore(string thumbprint, StoreName storeName = StoreName.My)
+            {
+                try
+                {
+                    X509Store store = new X509Store(storeName, StoreLocation.CurrentUser);
+                    store.Open(OpenFlags.ReadOnly);
+
+                    X509Certificate2Collection certificates = store.Certificates.Find(
+                        X509FindType.FindByThumbprint,
+                        thumbprint,
+                        false);
+
+                    store.Close();
+
+                    if (certificates.Count == 0)
+                        throw new Exception("Certificato non trovato nello store");
+
+                    return certificates[0];
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Errore nel caricamento dal store: {ex.Message}");
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Classe per i risultati della validazione
+    /// </summary>
+    public class CertificateValidationResult
+    {
+        public bool IsValid { get; set; }
+        public string ErrorMessage { get; set; }
+        public DateTime NotBefore { get; set; }
+        public DateTime NotAfter { get; set; }
+        public string Subject { get; set; }
+        public string Issuer { get; set; }
+        public string Thumbprint { get; set; }
+        public X509ChainStatus[] ChainStatus { get; set; }
+
+        public int DaysUntilExpiration
+        {
+            get
+            {
+                if (NotAfter == default)
+                    return -1;
+                TimeSpan remaining = NotAfter - DateTime.UtcNow;
+                return (int)remaining.TotalDays;
+            }
+        }
+    }
 
 
 
