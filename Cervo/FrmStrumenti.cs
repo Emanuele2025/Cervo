@@ -480,6 +480,102 @@ namespace Cervo
 
 
 
+
+
+        private void BtnTrovaFileP7mCertificati_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file P7M";
+                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m|Tutti i file (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoNomeFileP7mPerCertificato.Text = openFileDialog.FileName;
+                }
+            }
+        }
+
+        private void BtnTrovaFilePerEstraiFile_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file P7M";
+                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m|Tutti i file (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoNomeFilePerEstraiFile.Text = openFileDialog.FileName;
+                }
+            }
+        }
+
+        private void BtnEstraFileDaP7m_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BtnEstraiFileCertificato_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim()))
+            {
+
+                MessageBox.Show("Selezionare un file firmato di tipo .p7m");
+
+                return;
+
+            }
+
+            var risultato = GetCertificatoDaFile(TxtPercorsoNomeFileP7mPerCertificato.Text);
+
+            if (risultato == null)
+            {
+
+                MessageBox.Show("Impossibile estrapolare il certificato");
+
+                return;
+
+            }
+            //Visualizzare la finestra dove salvare il certificato estratto
+            string percorsoFile = Environment.CurrentDirectory + "\\CertificatoRilevato.cer";
+
+            //Creo il certificato
+
+            File.WriteAllBytes(percorsoFile, risultato);
+
+            //lo apro
+
+            System.Diagnostics.Process.Start(percorsoFile);
+        }
+
+        private byte[] GetCertificatoDaFile(string PercorsoNomeFile)
+        {
+
+            try
+            {
+
+                X509Certificate Certificato = new X509Certificate(PercorsoNomeFile);
+
+                byte[] CertificatoReturn = null;
+
+                CertificatoReturn = Certificato.Export(X509ContentType.Cert);
+
+                return CertificatoReturn;
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Errore: " + ex.Message);
+
+                return null;
+
+            }
+
+        }
+
+
+
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
