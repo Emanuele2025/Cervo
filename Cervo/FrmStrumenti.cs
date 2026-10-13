@@ -512,6 +512,23 @@ namespace Cervo
 
         private void BtnEstraFileDaP7m_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrEmpty(TxtPercorsoNomeFilePerEstraiFile.Text.Trim()))
+                {
+                    Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
+
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
+            }
+
+
+
 
         }
 
@@ -519,8 +536,7 @@ namespace Cervo
         {
             if (string.IsNullOrEmpty(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim()))
             {
-
-                MessageBox.Show("Selezionare un file firmato di tipo .p7m");
+                Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
 
                 return;
 
@@ -531,7 +547,7 @@ namespace Cervo
             if (risultato == null)
             {
 
-                MessageBox.Show("Impossibile estrapolare il certificato");
+                Utility.MessaggioInfo("Impossibile estrapolare il certificato");
 
                 return;
 
@@ -566,8 +582,7 @@ namespace Cervo
             catch (Exception ex)
             {
 
-                MessageBox.Show("Errore: " + ex.Message);
-
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
                 return null;
 
             }
