@@ -72,8 +72,9 @@
             // 
             // MniEsci
             // 
+            MniEsci.Image = Properties.Resources.Esci;
             MniEsci.Name = "MniEsci";
-            MniEsci.Size = new Size(94, 22);
+            MniEsci.Size = new Size(180, 22);
             MniEsci.Text = "Esci";
             MniEsci.Click += MniEsci_Click;
             // 
@@ -113,9 +114,11 @@
             // 
             // MniInfo
             // 
+            MniInfo.Image = Properties.Resources.Informazioni;
             MniInfo.Name = "MniInfo";
             MniInfo.Size = new Size(180, 22);
             MniInfo.Text = "Info...";
+            MniInfo.Click += MniInfo_Click;
             // 
             // Form1
             // 

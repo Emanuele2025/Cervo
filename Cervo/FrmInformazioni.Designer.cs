@@ -28,13 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
+            BtnChiudi = new Button();
             SuspendLayout();
+            // 
+            // BtnChiudi
+            // 
+            BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
+            BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnChiudi.Location = new Point(1222, 745);
+            BtnChiudi.Name = "BtnChiudi";
+            BtnChiudi.Size = new Size(75, 23);
+            BtnChiudi.TabIndex = 11;
+            BtnChiudi.Text = "Chiudi";
+            BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
+            BtnChiudi.UseVisualStyleBackColor = true;
+            BtnChiudi.Click += BtnChiudi_Click;
             // 
             // FrmInformazioni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1331, 780);
+            Controls.Add(BtnChiudi);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -46,5 +62,7 @@
         }
 
         #endregion
+
+        private Button BtnChiudi;
     }
 }

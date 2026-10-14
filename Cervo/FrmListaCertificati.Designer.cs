@@ -30,6 +30,7 @@
         {
             label2 = new Label();
             DtgListaCertificati = new DataGridView();
+            BtnChiudi = new Button();
             ((System.ComponentModel.ISupportInitialize)DtgListaCertificati).BeginInit();
             SuspendLayout();
             // 
@@ -52,14 +53,29 @@
             DtgListaCertificati.Dock = DockStyle.Top;
             DtgListaCertificati.Location = new Point(0, 22);
             DtgListaCertificati.Name = "DtgListaCertificati";
-            DtgListaCertificati.Size = new Size(800, 245);
+            DtgListaCertificati.Size = new Size(800, 217);
             DtgListaCertificati.TabIndex = 10;
+            // 
+            // BtnChiudi
+            // 
+            BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
+            BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
+            BtnChiudi.Location = new Point(713, 415);
+            BtnChiudi.Name = "BtnChiudi";
+            BtnChiudi.Size = new Size(75, 23);
+            BtnChiudi.TabIndex = 11;
+            BtnChiudi.Text = "Chiudi";
+            BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
+            BtnChiudi.UseVisualStyleBackColor = true;
+            BtnChiudi.Click += BtnChiudi_Click;
             // 
             // FrmListaCertificati
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(BtnChiudi);
             Controls.Add(DtgListaCertificati);
             Controls.Add(label2);
             Name = "FrmListaCertificati";
@@ -74,5 +90,6 @@
 
         private Label label2;
         private DataGridView DtgListaCertificati;
+        private Button BtnChiudi;
     }
 }

@@ -37,5 +37,15 @@ namespace Cervo
             Cursor.Current = Cursors.Default;
 
         }
+
+        private void MniInfo_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+
+
+            Cursor.Current = Cursors.Default;
+
+
+        }
     }
 }

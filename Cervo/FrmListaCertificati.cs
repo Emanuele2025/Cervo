@@ -26,12 +26,7 @@ namespace Cervo
 
                 storeCertificati.Open(OpenFlags.ReadOnly);
 
-
-
                 //Visualizzo solo i dati che interessano e li visualizza nel controllo datagridview
-
-
-
                 var risultatoCertificati = (from dati in storeCertificati.Certificates.Cast<X509Certificate2>()
 
                                             select new
@@ -47,13 +42,7 @@ namespace Cervo
                                                 ValidoFinoAl = dati.NotAfter
 
                                             }).ToList();
-
-
-
                 DtgListaCertificati.DataSource = risultatoCertificati;
-
-                // Chiudi la lettura dei certificati
-
                 storeCertificati.Close();
 
 
@@ -62,6 +51,11 @@ namespace Cervo
             {
                 Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
+        }
+
+        private void BtnChiudi_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

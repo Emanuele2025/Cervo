@@ -329,11 +329,14 @@
             // BtnChiudi
             // 
             BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
+            BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
             BtnChiudi.Location = new Point(713, 415);
             BtnChiudi.Name = "BtnChiudi";
             BtnChiudi.Size = new Size(75, 23);
             BtnChiudi.TabIndex = 10;
             BtnChiudi.Text = "Chiudi";
+            BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 

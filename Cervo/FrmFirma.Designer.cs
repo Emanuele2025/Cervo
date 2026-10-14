@@ -38,7 +38,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(20, 114);
+            label1.Location = new Point(12, 37);
             label1.Name = "label1";
             label1.Size = new Size(61, 15);
             label1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // CmbCertificati
             // 
             CmbCertificati.FormattingEnabled = true;
-            CmbCertificati.Location = new Point(20, 132);
+            CmbCertificati.Location = new Point(12, 55);
             CmbCertificati.Name = "CmbCertificati";
             CmbCertificati.Size = new Size(370, 23);
             CmbCertificati.TabIndex = 1;
@@ -78,11 +78,14 @@
             // BtnChiudi
             // 
             BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
+            BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
             BtnChiudi.Location = new Point(741, 415);
             BtnChiudi.Name = "BtnChiudi";
             BtnChiudi.Size = new Size(75, 23);
             BtnChiudi.TabIndex = 9;
             BtnChiudi.Text = "Chiudi";
+            BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 
