@@ -28,19 +28,12 @@ namespace Cervo
 
                 //Visualizzo solo i dati che interessano e li visualizza nel controllo datagridview
                 var risultatoCertificati = (from dati in storeCertificati.Certificates.Cast<X509Certificate2>()
-
                                             select new
-
                                             {
-
                                                 Oggetto = dati.Subject,
-
                                                 EnteCertificatore = dati.Issuer,
-
                                                 NumeroSeriale = dati.GetSerialNumberString(),
-
                                                 ValidoFinoAl = dati.NotAfter
-
                                             }).ToList();
                 DtgListaCertificati.DataSource = risultatoCertificati;
                 storeCertificati.Close();

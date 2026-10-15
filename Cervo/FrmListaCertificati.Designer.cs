@@ -31,6 +31,10 @@
             label2 = new Label();
             DtgListaCertificati = new DataGridView();
             BtnChiudi = new Button();
+            Oggetto = new DataGridViewTextBoxColumn();
+            EnteCertificatore = new DataGridViewTextBoxColumn();
+            NumeroSeriale = new DataGridViewTextBoxColumn();
+            ValidoFinoAl = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)DtgListaCertificati).BeginInit();
             SuspendLayout();
             // 
@@ -42,7 +46,7 @@
             label2.ForeColor = SystemColors.ControlLightLight;
             label2.Location = new Point(0, 0);
             label2.Name = "label2";
-            label2.Size = new Size(800, 22);
+            label2.Size = new Size(1191, 22);
             label2.TabIndex = 9;
             label2.Text = "Cervo - Lista dei certificati";
             label2.TextAlign = ContentAlignment.TopCenter;
@@ -50,10 +54,11 @@
             // DtgListaCertificati
             // 
             DtgListaCertificati.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DtgListaCertificati.Columns.AddRange(new DataGridViewColumn[] { Oggetto, EnteCertificatore, NumeroSeriale, ValidoFinoAl });
             DtgListaCertificati.Dock = DockStyle.Top;
             DtgListaCertificati.Location = new Point(0, 22);
             DtgListaCertificati.Name = "DtgListaCertificati";
-            DtgListaCertificati.Size = new Size(800, 217);
+            DtgListaCertificati.Size = new Size(1191, 526);
             DtgListaCertificati.TabIndex = 10;
             // 
             // BtnChiudi
@@ -61,7 +66,7 @@
             BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
             BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnChiudi.Location = new Point(713, 415);
+            BtnChiudi.Location = new Point(1104, 578);
             BtnChiudi.Name = "BtnChiudi";
             BtnChiudi.Size = new Size(75, 23);
             BtnChiudi.TabIndex = 11;
@@ -70,11 +75,43 @@
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 
+            // Oggetto
+            // 
+            Oggetto.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Oggetto.DataPropertyName = "Oggetto";
+            Oggetto.HeaderText = "Oggetto";
+            Oggetto.Name = "Oggetto";
+            Oggetto.Width = 300;
+            // 
+            // EnteCertificatore
+            // 
+            EnteCertificatore.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            EnteCertificatore.DataPropertyName = "EnteCertificatore";
+            EnteCertificatore.HeaderText = "Ente Certificatore";
+            EnteCertificatore.Name = "EnteCertificatore";
+            EnteCertificatore.Width = 300;
+            // 
+            // NumeroSeriale
+            // 
+            NumeroSeriale.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            NumeroSeriale.DataPropertyName = "NumeroSeriale";
+            NumeroSeriale.HeaderText = "Numero Seriale";
+            NumeroSeriale.Name = "NumeroSeriale";
+            NumeroSeriale.Width = 150;
+            // 
+            // ValidoFinoAl
+            // 
+            ValidoFinoAl.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            ValidoFinoAl.DataPropertyName = "ValidoFinoAl";
+            ValidoFinoAl.HeaderText = "Valido Fino Al";
+            ValidoFinoAl.Name = "ValidoFinoAl";
+            ValidoFinoAl.Width = 110;
+            // 
             // FrmListaCertificati
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1191, 613);
             Controls.Add(BtnChiudi);
             Controls.Add(DtgListaCertificati);
             Controls.Add(label2);
@@ -91,5 +128,9 @@
         private Label label2;
         private DataGridView DtgListaCertificati;
         private Button BtnChiudi;
+        private DataGridViewTextBoxColumn Oggetto;
+        private DataGridViewTextBoxColumn EnteCertificatore;
+        private DataGridViewTextBoxColumn NumeroSeriale;
+        private DataGridViewTextBoxColumn ValidoFinoAl;
     }
 }
