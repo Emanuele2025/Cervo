@@ -552,6 +552,47 @@ namespace Cervo
                 return;
 
             }
+
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer|Certificato PEM (*.pem)|*.pem|Tutti i file (*.*)|*.*";
+                saveFileDialog.Title = "Salva il certificato";
+
+
+                string valoreSubectNameCertificato = "Certificato";
+                // Suggerisce un nome basato sul subject
+                string subjectName = ExtractCommonName(valoreSubectNameCertificato);
+                saveFileDialog.FileName = $"{subjectName}.cer";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        string outputPath = saveFileDialog.FileName;
+                        string extension = Path.GetExtension(outputPath).ToLower();
+
+                        if (extension == ".pem")
+                        {
+                      //      P7mCertificateExtractor.SaveCertificateToPem(certificateToSave, outputPath);
+                        }
+                        else
+                        {
+                 //           P7mCertificateExtractor.SaveCertificateToDer(certificateToSave, outputPath);
+                        }
+
+                        MessageBox.Show($"Certificato salvato con successo:\n{outputPath}",
+                            "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Errore nel salvataggio: {ex.Message}",
+                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+
+
+
             //Visualizzare la finestra dove salvare il certificato estratto
             string percorsoFile = Environment.CurrentDirectory + "\\CertificatoRilevato.cer";
 
@@ -563,7 +604,21 @@ namespace Cervo
 
             System.Diagnostics.Process.Start(percorsoFile);
         }
-
+        /// <summary>
+        /// Estrae il Common Name dal Subject del certificato
+        /// </summary>
+        private string ExtractCommonName(string subject)
+        {
+            string[] parts = subject.Split(',');
+            foreach (string part in parts)
+            {
+                if (part.Trim().StartsWith("CN="))
+                {
+                    return part.Trim().Substring(3);
+                }
+            }
+            return "Certificato";
+        }
         private byte[] GetCertificatoDaFile(string PercorsoNomeFile)
         {
 
