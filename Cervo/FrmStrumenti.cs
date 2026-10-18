@@ -542,45 +542,51 @@ namespace Cervo
 
             }
 
-            var risultato = GetCertificatoDaFile(TxtPercorsoNomeFileP7mPerCertificato.Text);
+            
 
-            if (risultato == null)
+            var certificati = EstraiCertificati(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim());
+
+            if (certificati.Count == 0)
             {
-
-                Utility.MessaggioInfo("Impossibile estrapolare il certificato");
-
+                MessageBox.Show("Nessun certificato trovato nel file.");
                 return;
-
             }
 
+            X509Certificate2 certificato = certificati[0];
+             
+            string valoreSubectNameCertificato = certificato?.SubjectName?.Name ?? "";
+            if (valoreSubectNameCertificato =="")
+            {
+                valoreSubectNameCertificato = "Certificato";
+            }
             using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer|Certificato PEM (*.pem)|*.pem|Tutti i file (*.*)|*.*";
-                saveFileDialog.Title = "Salva il certificato";
+                saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer";
+                saveFileDialog.Title = "Salva il certificato.";
 
-
-                string valoreSubectNameCertificato = "Certificato";
                 // Suggerisce un nome basato sul subject
-                string subjectName = ExtractCommonName(valoreSubectNameCertificato);
-                saveFileDialog.FileName = $"{subjectName}.cer";
+                string NomeFile = RilevaNomeDalSubject(certificato);
+                saveFileDialog.FileName = $"{NomeFile}.cer";
+                saveFileDialog.DefaultExt = "cer";
+                saveFileDialog.AddExtension = true;
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
-                        string outputPath = saveFileDialog.FileName;
-                        string extension = Path.GetExtension(outputPath).ToLower();
-
-                        if (extension == ".pem")
+                        string percorsoNomeFileDaSalvare = saveFileDialog.FileName;
+                         
+                        if (certificato != null)
                         {
-                      //      P7mCertificateExtractor.SaveCertificateToPem(certificateToSave, outputPath);
-                        }
-                        else
-                        {
-                 //           P7mCertificateExtractor.SaveCertificateToDer(certificateToSave, outputPath);
-                        }
+                            byte[] certBytes = certificato.Export(X509ContentType.Cert);
+                            File.WriteAllBytes(percorsoNomeFileDaSalvare, certBytes);
 
-                        MessageBox.Show($"Certificato salvato con successo:\n{outputPath}",
+                        }
+                            
+
+
+
+                        MessageBox.Show($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}",
                             "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
@@ -591,33 +597,30 @@ namespace Cervo
                 }
             }
 
-
-
-            //Visualizzare la finestra dove salvare il certificato estratto
-            string percorsoFile = Environment.CurrentDirectory + "\\CertificatoRilevato.cer";
-
-            //Creo il certificato
-
-            File.WriteAllBytes(percorsoFile, risultato);
-
-            //lo apro
-
-            System.Diagnostics.Process.Start(percorsoFile);
+ 
         }
-        /// <summary>
-        /// Estrae il Common Name dal Subject del certificato
-        /// </summary>
-        private string ExtractCommonName(string subject)
+
+
+        public static X509Certificate2Collection EstraiCertificati(string percorso)
         {
-            string[] parts = subject.Split(',');
-            foreach (string part in parts)
-            {
-                if (part.Trim().StartsWith("CN="))
-                {
-                    return part.Trim().Substring(3);
-                }
-            }
-            return "Certificato";
+            byte[] dati = File.ReadAllBytes(percorso);
+
+            var signedCms = new SignedCms();
+            signedCms.Decode(dati);   // decodifica la struttura PKCS#7/CMS
+
+            // I certificati inclusi nella firma
+            return signedCms.Certificates;
+        }
+
+
+
+
+        /// <summary>
+        /// Estrae il nome dal certificato
+        /// </summary>
+        private string RilevaNomeDalSubject(X509Certificate2 certificato)
+        {
+            return certificato.GetNameInfo(X509NameType.SimpleName, false);
         }
         private byte[] GetCertificatoDaFile(string PercorsoNomeFile)
         {
