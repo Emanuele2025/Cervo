@@ -542,8 +542,6 @@ namespace Cervo
 
             }
 
-            
-
             var certificati = EstraiCertificati(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim());
 
             if (certificati.Count == 0)
@@ -553,9 +551,9 @@ namespace Cervo
             }
 
             X509Certificate2 certificato = certificati[0];
-             
+
             string valoreSubectNameCertificato = certificato?.SubjectName?.Name ?? "";
-            if (valoreSubectNameCertificato =="")
+            if (valoreSubectNameCertificato == "")
             {
                 valoreSubectNameCertificato = "Certificato";
             }
@@ -563,45 +561,61 @@ namespace Cervo
             {
                 saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer";
                 saveFileDialog.Title = "Salva il certificato.";
-
-                // Suggerisce un nome basato sul subject
-                string NomeFile = RilevaNomeDalSubject(certificato);
-                saveFileDialog.FileName = $"{NomeFile}.cer";
-                saveFileDialog.DefaultExt = "cer";
-                saveFileDialog.AddExtension = true;
-
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (certificato != null)
                 {
-                    try
+
+                    //Rileva il nome dal subject 
+                    string NomeFile = RilevaNomeDalSubject(certificato);
+                    saveFileDialog.FileName = $"{NomeFile}.cer";
+                    saveFileDialog.DefaultExt = "cer";
+                    saveFileDialog.AddExtension = true;
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        string percorsoNomeFileDaSalvare = saveFileDialog.FileName;
-                         
-                        if (certificato != null)
+                        try
                         {
-                            byte[] certBytes = certificato.Export(X509ContentType.Cert);
-                            File.WriteAllBytes(percorsoNomeFileDaSalvare, certBytes);
+                            string percorsoNomeFileDaSalvare = saveFileDialog.FileName;
+
+                            if (certificato != null)
+                            {
+                                byte[] certBytes = certificato.Export(X509ContentType.Cert);
+                                File.WriteAllBytes(percorsoNomeFileDaSalvare, certBytes);
+
+                            }
+
+
+
+
+                            Utility.MessaggioInfo($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}");
+                        }
+                        catch (Exception ex)
+                        {
+                            Utility.MessaggioErrore(Utility.Errore + ex.Message);
 
                         }
-
-
-
-
-                        Utility.MessaggioInfo($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}");
-                    }
-                    catch (Exception ex)
-                    {
-                        Utility.MessaggioErrore(Utility.Errore + ex.Message);
-                         
                     }
                 }
             }
 
- 
+
         }
+
+
+
+
+
+
+
+
 
         #region Gestione certificati
 
-        #endregion
+
+        /// <summary>
+        /// Metodo che estrapola i certificati del file p7m
+        /// </summary>
+        /// <param name="percorso"></param>
+        /// <returns></returns>
         public static X509Certificate2Collection EstraiCertificati(string percorso)
         {
             byte[] dati = File.ReadAllBytes(percorso);
@@ -614,8 +628,6 @@ namespace Cervo
         }
 
 
-
-
         /// <summary>
         /// Estrae il nome dal certificato
         /// </summary>
@@ -623,6 +635,16 @@ namespace Cervo
         {
             return certificato.GetNameInfo(X509NameType.SimpleName, false);
         }
+
+
+
+        #endregion
+
+
+
+
+
+
         private byte[] GetCertificatoDaFile(string PercorsoNomeFile)
         {
 
