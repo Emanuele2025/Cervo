@@ -534,46 +534,49 @@ namespace Cervo
 
         private void BtnEstraiFileCertificato_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim()))
+            try
             {
-                Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
 
-                return;
 
-            }
-
-            var certificati = EstraiCertificati(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim());
-
-            if (certificati.Count == 0)
-            {
-                Utility.MessaggioInfo("Nessun certificato trovato nel file.");
-                return;
-            }
-
-            X509Certificate2 certificato = certificati[0];
-
-            string valoreSubectNameCertificato = certificato?.SubjectName?.Name ?? "";
-            if (valoreSubectNameCertificato == "")
-            {
-                valoreSubectNameCertificato = "Certificato";
-            }
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-            {
-                saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer";
-                saveFileDialog.Title = "Salva il certificato.";
-                if (certificato != null)
+                if (string.IsNullOrEmpty(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim()))
                 {
+                    Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
 
-                    //Rileva il nome dal subject 
-                    string NomeFile = RilevaNomeDalSubject(certificato);
-                    saveFileDialog.FileName = $"{NomeFile}.cer";
-                    saveFileDialog.DefaultExt = "cer";
-                    saveFileDialog.AddExtension = true;
+                    return;
 
-                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                }
+
+                var certificati = EstraiCertificati(TxtPercorsoNomeFileP7mPerCertificato.Text.Trim());
+
+                if (certificati.Count == 0)
+                {
+                    Utility.MessaggioInfo("Nessun certificato trovato nel file.");
+                    return;
+                }
+
+                X509Certificate2 certificato = certificati[0];
+
+                string valoreSubectNameCertificato = certificato?.SubjectName?.Name ?? "";
+                if (valoreSubectNameCertificato == "")
+                {
+                    valoreSubectNameCertificato = "Certificato";
+                }
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Filter = "Certificato DER (*.cer)|*.cer";
+                    saveFileDialog.Title = "Salva il certificato.";
+                    if (certificato != null)
                     {
-                        try
+
+                        //Rileva il nome dal subject 
+                        string NomeFile = RilevaNomeDalSubject(certificato);
+                        saveFileDialog.FileName = $"{NomeFile}.cer";
+                        saveFileDialog.DefaultExt = "cer";
+                        saveFileDialog.AddExtension = true;
+
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
                         {
+
                             string percorsoNomeFileDaSalvare = saveFileDialog.FileName;
 
                             if (certificato != null)
@@ -583,21 +586,17 @@ namespace Cervo
 
                             }
 
-
-
-
                             Utility.MessaggioInfo($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}");
-                        }
-                        catch (Exception ex)
-                        {
-                            Utility.MessaggioErrore(Utility.Errore + ex.Message);
 
                         }
                     }
                 }
+
             }
-
-
+            catch (Exception ex)
+            {
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
+            }
         }
 
 
