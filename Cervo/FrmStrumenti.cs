@@ -548,7 +548,7 @@ namespace Cervo
 
             if (certificati.Count == 0)
             {
-                MessageBox.Show("Nessun certificato trovato nel file.");
+                Utility.MessaggioInfo("Nessun certificato trovato nel file.");
                 return;
             }
 
@@ -582,17 +582,16 @@ namespace Cervo
                             File.WriteAllBytes(percorsoNomeFileDaSalvare, certBytes);
 
                         }
-                            
 
 
 
-                        MessageBox.Show($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}",
-                            "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        Utility.MessaggioInfo($"Certificato salvato con successo:\n{percorsoNomeFileDaSalvare}");
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Errore nel salvataggio: {ex.Message}",
-                            "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Utility.MessaggioErrore(Utility.Errore + ex.Message);
+                         
                     }
                 }
             }
@@ -600,7 +599,9 @@ namespace Cervo
  
         }
 
+        #region Gestione certificati
 
+        #endregion
         public static X509Certificate2Collection EstraiCertificati(string percorso)
         {
             byte[] dati = File.ReadAllBytes(percorso);
