@@ -610,7 +610,7 @@ namespace Cervo
         #region Gestione certificati
 
 
-        private void ValidateCertificateStatus(X509Certificate2 certificate)
+        private void VerificatoStatoCertificato(X509Certificate2 certificate)
         {
             // --- CONTROLLO SCADENZA (Semplice) ---
             DateTime oggi = DateTime.Now;
@@ -646,21 +646,21 @@ namespace Cervo
                 else
                 {
                     // Se isValidChain è false, analizziamo i motivi specifici (es. Revocazione)
-                    string errors = "";
+                    string erroriTrovati = "";
                     foreach (X509ChainStatus status in chain.ChainStatus)
                     {
                         // Filtriamo per trovare specificamente la revoca
                         if (status.Status == X509ChainStatusFlags.Revoked)
                         {
-                            errors += "❌ IL CERTIFICATO È STATO REVOCATO!\n";
+                            erroriTrovati += " IL CERTIFICATO È STATO REVOCATO!\n";
                         }
                         else
                         {
-                            errors += $"⚠️ {status.Status}: {status.StatusInformation}\n";
+                            erroriTrovati += $"  {status.Status}: {status.StatusInformation}\n";
                         }
                     }
 
-                    MessageBox.Show($"Il certificato non è valido:\n\n{errors}",
+                    MessageBox.Show($"Il certificato non è valido:\n\n{erroriTrovati}",
                         "Errore Validazione", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -752,7 +752,7 @@ namespace Cervo
             X509Certificate2 certificate = new X509Certificate2(TxtPercorsoFileP7mVerifica.Text.Trim());
 
             // 2. Esecuzione della validazione
-            ValidateCertificateStatus(certificate);
+            VerificatoStatoCertificato(certificate);
         }
     }
     /// <summary>
