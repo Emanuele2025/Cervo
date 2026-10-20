@@ -53,6 +53,11 @@
             BtnEstraiFileCertificato = new Button();
             TxtPercorsoNomeFileP7mPerCertificato = new TextBox();
             BtnTrovaFileP7mCertificati = new Button();
+            TbpVerificaCertificato = new TabPage();
+            label4 = new Label();
+            BtnVerifica = new Button();
+            TxtPercorsoFileP7mVerifica = new TextBox();
+            BtnTrovaFilePerVerifica = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
             TbcFunzionalita.SuspendLayout();
@@ -61,6 +66,7 @@
             TbpVerificaFirma.SuspendLayout();
             TbpEstraiFile.SuspendLayout();
             TbpEstraiCertifcato.SuspendLayout();
+            TbpVerificaCertificato.SuspendLayout();
             SuspendLayout();
             // 
             // TbcFunzionalita
@@ -71,6 +77,7 @@
             TbcFunzionalita.Controls.Add(TbpVerificaFirma);
             TbcFunzionalita.Controls.Add(TbpEstraiFile);
             TbcFunzionalita.Controls.Add(TbpEstraiCertifcato);
+            TbcFunzionalita.Controls.Add(TbpVerificaCertificato);
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
@@ -94,7 +101,7 @@
             // 
             // BtnEstraiCertificato
             // 
-            BtnEstraiCertificato.Location = new Point(119, 83);
+            BtnEstraiCertificato.Location = new Point(103, 63);
             BtnEstraiCertificato.Name = "BtnEstraiCertificato";
             BtnEstraiCertificato.Size = new Size(112, 23);
             BtnEstraiCertificato.TabIndex = 4;
@@ -112,7 +119,7 @@
             // 
             // BtnVerificaCertificato
             // 
-            BtnVerificaCertificato.Location = new Point(31, 82);
+            BtnVerificaCertificato.Location = new Point(15, 62);
             BtnVerificaCertificato.Name = "BtnVerificaCertificato";
             BtnVerificaCertificato.Size = new Size(75, 23);
             BtnVerificaCertificato.TabIndex = 2;
@@ -122,14 +129,14 @@
             // 
             // TxtPercorsoFileFirmato
             // 
-            TxtPercorsoFileFirmato.Location = new Point(24, 51);
+            TxtPercorsoFileFirmato.Location = new Point(8, 31);
             TxtPercorsoFileFirmato.Name = "TxtPercorsoFileFirmato";
             TxtPercorsoFileFirmato.Size = new Size(311, 23);
             TxtPercorsoFileFirmato.TabIndex = 1;
             // 
             // BtnTrovaFileP7m
             // 
-            BtnTrovaFileP7m.Location = new Point(341, 51);
+            BtnTrovaFileP7m.Location = new Point(325, 31);
             BtnTrovaFileP7m.Name = "BtnTrovaFileP7m";
             BtnTrovaFileP7m.Size = new Size(31, 23);
             BtnTrovaFileP7m.TabIndex = 0;
@@ -152,7 +159,7 @@
             // 
             // BtnVerificaFirma
             // 
-            BtnVerificaFirma.Location = new Point(18, 47);
+            BtnVerificaFirma.Location = new Point(8, 62);
             BtnVerificaFirma.Name = "BtnVerificaFirma";
             BtnVerificaFirma.Size = new Size(75, 23);
             BtnVerificaFirma.TabIndex = 7;
@@ -162,14 +169,14 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(18, 18);
+            textBox1.Location = new Point(8, 33);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(311, 23);
             textBox1.TabIndex = 6;
             // 
             // button3
             // 
-            button3.Location = new Point(335, 18);
+            button3.Location = new Point(325, 33);
             button3.Name = "button3";
             button3.Size = new Size(31, 23);
             button3.TabIndex = 5;
@@ -313,6 +320,55 @@
             BtnTrovaFileP7mCertificati.UseVisualStyleBackColor = true;
             BtnTrovaFileP7mCertificati.Click += BtnTrovaFileP7mCertificati_Click;
             // 
+            // TbpVerificaCertificato
+            // 
+            TbpVerificaCertificato.Controls.Add(label4);
+            TbpVerificaCertificato.Controls.Add(BtnVerifica);
+            TbpVerificaCertificato.Controls.Add(TxtPercorsoFileP7mVerifica);
+            TbpVerificaCertificato.Controls.Add(BtnTrovaFilePerVerifica);
+            TbpVerificaCertificato.Location = new Point(4, 24);
+            TbpVerificaCertificato.Name = "TbpVerificaCertificato";
+            TbpVerificaCertificato.Size = new Size(792, 253);
+            TbpVerificaCertificato.TabIndex = 5;
+            TbpVerificaCertificato.Text = "Verifica Certificato";
+            TbpVerificaCertificato.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(8, 22);
+            label4.Name = "label4";
+            label4.Size = new Size(142, 15);
+            label4.TabIndex = 18;
+            label4.Text = "Percorso e nome file p7m";
+            // 
+            // BtnVerifica
+            // 
+            BtnVerifica.Location = new Point(8, 69);
+            BtnVerifica.Name = "BtnVerifica";
+            BtnVerifica.Size = new Size(142, 23);
+            BtnVerifica.TabIndex = 17;
+            BtnVerifica.Text = "Verifica Certificato";
+            BtnVerifica.UseVisualStyleBackColor = true;
+            BtnVerifica.Click += BtnVerifica_Click;
+            // 
+            // TxtPercorsoFileP7mVerifica
+            // 
+            TxtPercorsoFileP7mVerifica.Location = new Point(8, 40);
+            TxtPercorsoFileP7mVerifica.Name = "TxtPercorsoFileP7mVerifica";
+            TxtPercorsoFileP7mVerifica.Size = new Size(311, 23);
+            TxtPercorsoFileP7mVerifica.TabIndex = 16;
+            // 
+            // BtnTrovaFilePerVerifica
+            // 
+            BtnTrovaFilePerVerifica.Location = new Point(325, 40);
+            BtnTrovaFilePerVerifica.Name = "BtnTrovaFilePerVerifica";
+            BtnTrovaFilePerVerifica.Size = new Size(31, 23);
+            BtnTrovaFilePerVerifica.TabIndex = 15;
+            BtnTrovaFilePerVerifica.Text = "...";
+            BtnTrovaFilePerVerifica.UseVisualStyleBackColor = true;
+            BtnTrovaFilePerVerifica.Click += BtnTrovaFilePerVerifica_Click;
+            // 
             // label2
             // 
             label2.BackColor = Color.Turquoise;
@@ -363,6 +419,8 @@
             TbpEstraiFile.PerformLayout();
             TbpEstraiCertifcato.ResumeLayout(false);
             TbpEstraiCertifcato.PerformLayout();
+            TbpVerificaCertificato.ResumeLayout(false);
+            TbpVerificaCertificato.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -395,5 +453,10 @@
         private Button BtnEstraiFileCertificato;
         private TextBox TxtPercorsoNomeFileP7mPerCertificato;
         private Button BtnTrovaFileP7mCertificati;
+        private TabPage TbpVerificaCertificato;
+        private Label label4;
+        private Button BtnVerifica;
+        private TextBox TxtPercorsoFileP7mVerifica;
+        private Button BtnTrovaFilePerVerifica;
     }
 }

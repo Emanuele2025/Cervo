@@ -556,12 +556,12 @@ namespace Cervo.Models
     public class CertificateValidationResult
     {
         public bool IsValid { get; set; }
-        public string ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = "";
         public DateTime NotBefore { get; set; }
         public DateTime NotAfter { get; set; }
-        public string Subject { get; set; }
-        public string Issuer { get; set; }
-        public string Thumbprint { get; set; }
+        public string Subject { get; set; } = "";
+        public string Issuer { get; set; } = "";
+        public string Thumbprint { get; set; } = "";
         public X509ChainStatus[] ChainStatus { get; set; }
 
         public int DaysUntilExpiration

@@ -610,6 +610,62 @@ namespace Cervo
         #region Gestione certificati
 
 
+        private void ValidateCertificateStatus(X509Certificate2 certificate)
+        {
+            // --- CONTROLLO SCADENZA (Semplice) ---
+            DateTime oggi = DateTime.Now;
+            if (oggi < certificate.NotBefore)
+            {
+                MessageBox.Show($"Il certificato non è ancora valido.\nInizio validità: {certificate.NotBefore}",
+                    "Certificato Non Valido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (oggi > certificate.NotAfter)
+            {
+                MessageBox.Show($"Il certificato è SCADUTO.\nData di scadenza: {certificate.NotAfter}",
+                    "Certificato Scaduto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // --- CONTROLLO REVOCA E CATENA (Avanzato) ---
+            using (X509Chain chain = new X509Chain())
+            {
+                // Configurazione della politica di validazione
+                chain.ChainPolicy.RevocationMode = X509RevocationMode.Online; // Forza controllo revoca online (CRL/OCSP)
+                chain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot; // Non controlla la revoca della Root CA
+                chain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
+
+                // Build() esegue la verifica effettiva
+                bool isValidChain = chain.Build(certificate);
+
+                if (isValidChain)
+                {
+                    MessageBox.Show("Il certificato è VALIDO, non è scaduto e non risulta revocato.",
+                        "Verifica Completata", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Se isValidChain è false, analizziamo i motivi specifici (es. Revocazione)
+                    string errors = "";
+                    foreach (X509ChainStatus status in chain.ChainStatus)
+                    {
+                        // Filtriamo per trovare specificamente la revoca
+                        if (status.Status == X509ChainStatusFlags.Revoked)
+                        {
+                            errors += "❌ IL CERTIFICATO È STATO REVOCATO!\n";
+                        }
+                        else
+                        {
+                            errors += $"⚠️ {status.Status}: {status.StatusInformation}\n";
+                        }
+                    }
+
+                    MessageBox.Show($"Il certificato non è valido:\n\n{errors}",
+                        "Errore Validazione", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         /// <summary>
         /// Metodo che estrapola i certificati del file p7m
         /// </summary>
@@ -669,8 +725,35 @@ namespace Cervo
 
         }
 
+        private void BtnTrovaFilePerVerifica_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file P7M";
+                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m|Tutti i file (*.*)|*.*";
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoFileP7mVerifica.Text = openFileDialog.FileName;
+                }
+            }
+        }
 
+        private void BtnVerifica_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtPercorsoFileP7mVerifica.Text.Trim()))
+            {
+                Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
+
+                return;
+
+            }
+
+            X509Certificate2 certificate = new X509Certificate2(TxtPercorsoFileP7mVerifica.Text.Trim());
+
+            // 2. Esecuzione della validazione
+            ValidateCertificateStatus(certificate);
+        }
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
@@ -685,7 +768,7 @@ namespace Cervo
         /// <summary>
         /// Messaggio di stato (valido, scaduto, revocato, ecc.)
         /// </summary>
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; set; } = "";
 
         /// <summary>
         /// True se il certificato è scaduto
@@ -700,17 +783,17 @@ namespace Cervo
         /// <summary>
         /// Subject del certificato
         /// </summary>
-        public string Subject { get; set; }
+        public string Subject { get; set; } = "";
 
         /// <summary>
         /// Issuer del certificato
         /// </summary>
-        public string Issuer { get; set; }
+        public string Issuer { get; set; } = "";
 
         /// <summary>
         /// Thumbprint (impronta) del certificato
         /// </summary>
-        public string Thumbprint { get; set; }
+        public string Thumbprint { get; set; } = "";
 
         /// <summary>
         /// Data di inizio validità del certificato
@@ -725,7 +808,7 @@ namespace Cervo
         /// <summary>
         /// Numero seriale del certificato
         /// </summary>
-        public string SerialNumber { get; set; }
+        public string SerialNumber { get; set; } = "";
 
         /// <summary>
         /// Giorni rimanenti fino alla scadenza (null se scaduto)
