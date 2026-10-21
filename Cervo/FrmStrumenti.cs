@@ -616,14 +616,13 @@ namespace Cervo
             DateTime oggi = DateTime.Now;
             if (oggi < certificate.NotBefore)
             {
-                MessageBox.Show($"Il certificato non è ancora valido.\nInizio validità: {certificate.NotBefore}",
-                    "Certificato Non Valido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Utility.MessaggioInfo($"Il certificato non è ancora valido.\nInizio validità: {certificate.NotBefore}");
+                
                 return;
             }
             if (oggi > certificate.NotAfter)
             {
-                MessageBox.Show($"Il certificato è SCADUTO.\nData di scadenza: {certificate.NotAfter}",
-                    "Certificato Scaduto", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioInfo($"Il certificato è SCADUTO.\nData di scadenza: {certificate.NotAfter}");
                 return;
             }
 
@@ -640,8 +639,7 @@ namespace Cervo
 
                 if (isValidChain)
                 {
-                    MessageBox.Show("Il certificato è VALIDO, non è scaduto e non risulta revocato.",
-                        "Verifica Completata", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Utility.MessaggioInfo("Il certificato è VALIDO, non è scaduto e non risulta revocato.");
                 }
                 else
                 {
@@ -660,8 +658,7 @@ namespace Cervo
                         }
                     }
 
-                    MessageBox.Show($"Il certificato non è valido:\n\n{erroriTrovati}",
-                        "Errore Validazione", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Utility.MessaggioInfo($"Il certificato non è valido:\n\n{erroriTrovati}");
                 }
             }
         }
@@ -751,7 +748,7 @@ namespace Cervo
 
             X509Certificate2 certificate = new X509Certificate2(TxtPercorsoFileP7mVerifica.Text.Trim());
 
-            // 2. Esecuzione della validazione
+            //Eseguo la funzione
             VerificatoStatoCertificato(certificate);
         }
     }
