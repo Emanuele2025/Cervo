@@ -142,7 +142,7 @@ namespace Cervo
 
             try
             {
-                X509Store storeX509 = new X509Store(StoreName.AddressBook, StoreLocation.CurrentUser);
+                X509Store storeX509 = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
                 storeX509.Open(OpenFlags.MaxAllowed);
                 X509Certificate2 certificato = storeX509.Certificates.Find(X509FindType.FindBySubjectName, "Emanuele", true)[0];
             }
@@ -609,7 +609,10 @@ namespace Cervo
 
         #region Gestione certificati
 
-
+        /// <summary>
+        /// Funzione per la gestione dello stato dei certificati
+        /// </summary>
+        /// <param name="certificate"></param>
         private void VerificatoStatoCertificato(X509Certificate2 certificate)
         {
             // --- CONTROLLO SCADENZA (Semplice) ---
@@ -694,33 +697,6 @@ namespace Cervo
 
 
 
-
-
-
-        private byte[] GetCertificatoDaFile(string PercorsoNomeFile)
-        {
-
-            try
-            {
-
-                X509Certificate Certificato = new X509Certificate(PercorsoNomeFile);
-
-                byte[] CertificatoReturn = null;
-
-                CertificatoReturn = Certificato.Export(X509ContentType.Cert);
-
-                return CertificatoReturn;
-
-            }
-            catch (Exception ex)
-            {
-
-                Utility.MessaggioErrore(Utility.Errore + ex.Message);
-                return null;
-
-            }
-
-        }
 
         private void BtnTrovaFilePerVerifica_Click(object sender, EventArgs e)
         {
