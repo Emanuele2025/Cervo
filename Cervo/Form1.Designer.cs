@@ -74,7 +74,7 @@
             // 
             MniEsci.Image = Properties.Resources.Esci;
             MniEsci.Name = "MniEsci";
-            MniEsci.Size = new Size(180, 22);
+            MniEsci.Size = new Size(94, 22);
             MniEsci.Text = "Esci";
             MniEsci.Click += MniEsci_Click;
             // 
@@ -90,6 +90,7 @@
             MniListaCertificati.Name = "MniListaCertificati";
             MniListaCertificati.Size = new Size(180, 22);
             MniListaCertificati.Text = "Lista Certificati...";
+            MniListaCertificati.ToolTipText = "Fornisce l'elenco dei certificati installati sul pc";
             MniListaCertificati.Click += MniListaCertificati_Click;
             // 
             // MniStrumenti
@@ -118,6 +119,7 @@
             MniInfo.Name = "MniInfo";
             MniInfo.Size = new Size(180, 22);
             MniInfo.Text = "Info...";
+            MniInfo.ToolTipText = "Informazioni sul programma";
             MniInfo.Click += MniInfo_Click;
             // 
             // Form1

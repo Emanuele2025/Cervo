@@ -51,7 +51,7 @@
             BtnChiudi.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             BtnChiudi.Image = Properties.Resources.Chiudi_uxwing;
             BtnChiudi.ImageAlign = ContentAlignment.MiddleLeft;
-            BtnChiudi.Location = new Point(844, 745);
+            BtnChiudi.Location = new Point(844, 503);
             BtnChiudi.Name = "BtnChiudi";
             BtnChiudi.Size = new Size(75, 23);
             BtnChiudi.TabIndex = 11;
@@ -192,12 +192,13 @@
             lnkduckduckgo.TabIndex = 35;
             lnkduckduckgo.TabStop = true;
             lnkduckduckgo.Text = "L'immagine del cervo creata tramite Duckduckgo AI Image Generator https://duck.ai/";
+            lnkduckduckgo.LinkClicked += lnkduckduckgo_LinkClicked;
             // 
             // FrmInformazioni
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(943, 780);
+            ClientSize = new Size(943, 538);
             Controls.Add(linkLabel1);
             Controls.Add(lkluxwing);
             Controls.Add(label8);

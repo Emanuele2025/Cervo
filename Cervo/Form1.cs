@@ -41,7 +41,8 @@ namespace Cervo
         private void MniInfo_Click(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-
+            FrmInformazioni info = new FrmInformazioni();
+            info.ShowDialog();
 
             Cursor.Current = Cursors.Default;
 
