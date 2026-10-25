@@ -65,5 +65,23 @@ namespace Cervo
 
             }
         }
+
+        private void lkluxwing_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "https://uxwing.com/",
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                Utility.MessaggioErrore("Impossibile aprire il sito: " + ex.Message);
+
+            }
+        }
     }
 }

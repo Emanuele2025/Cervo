@@ -173,6 +173,7 @@
             lkluxwing.TabIndex = 37;
             lkluxwing.TabStop = true;
             lkluxwing.Text = "Alcune icone utilizzate in questo programma sono fornite da  uxwing https://uxwing.com/";
+            lkluxwing.LinkClicked += lkluxwing_LinkClicked;
             // 
             // label8
             // 
