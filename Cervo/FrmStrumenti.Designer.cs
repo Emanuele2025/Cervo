@@ -238,7 +238,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(8, 18);
+            label3.Location = new Point(3, 11);
             label3.Name = "label3";
             label3.Size = new Size(206, 15);
             label3.TabIndex = 15;
@@ -246,7 +246,7 @@
             // 
             // BtnEstraFileDaP7m
             // 
-            BtnEstraFileDaP7m.Location = new Point(8, 65);
+            BtnEstraFileDaP7m.Location = new Point(3, 58);
             BtnEstraFileDaP7m.Name = "BtnEstraFileDaP7m";
             BtnEstraFileDaP7m.Size = new Size(115, 23);
             BtnEstraFileDaP7m.TabIndex = 13;
@@ -256,14 +256,14 @@
             // 
             // TxtPercorsoNomeFilePerEstraiFile
             // 
-            TxtPercorsoNomeFilePerEstraiFile.Location = new Point(8, 36);
+            TxtPercorsoNomeFilePerEstraiFile.Location = new Point(3, 29);
             TxtPercorsoNomeFilePerEstraiFile.Name = "TxtPercorsoNomeFilePerEstraiFile";
             TxtPercorsoNomeFilePerEstraiFile.Size = new Size(311, 23);
             TxtPercorsoNomeFilePerEstraiFile.TabIndex = 12;
             // 
             // BtnTrovaFilePerEstraiFile
             // 
-            BtnTrovaFilePerEstraiFile.Location = new Point(325, 36);
+            BtnTrovaFilePerEstraiFile.Location = new Point(320, 29);
             BtnTrovaFilePerEstraiFile.Name = "BtnTrovaFilePerEstraiFile";
             BtnTrovaFilePerEstraiFile.Size = new Size(31, 23);
             BtnTrovaFilePerEstraiFile.TabIndex = 11;
@@ -287,7 +287,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 19);
+            label1.Location = new Point(3, 10);
             label1.Name = "label1";
             label1.Size = new Size(142, 15);
             label1.TabIndex = 14;
@@ -295,7 +295,7 @@
             // 
             // BtnEstraiFileCertificato
             // 
-            BtnEstraiFileCertificato.Location = new Point(8, 66);
+            BtnEstraiFileCertificato.Location = new Point(3, 57);
             BtnEstraiFileCertificato.Name = "BtnEstraiFileCertificato";
             BtnEstraiFileCertificato.Size = new Size(142, 23);
             BtnEstraiFileCertificato.TabIndex = 13;
@@ -305,14 +305,14 @@
             // 
             // TxtPercorsoNomeFileP7mPerCertificato
             // 
-            TxtPercorsoNomeFileP7mPerCertificato.Location = new Point(8, 37);
+            TxtPercorsoNomeFileP7mPerCertificato.Location = new Point(3, 28);
             TxtPercorsoNomeFileP7mPerCertificato.Name = "TxtPercorsoNomeFileP7mPerCertificato";
             TxtPercorsoNomeFileP7mPerCertificato.Size = new Size(311, 23);
             TxtPercorsoNomeFileP7mPerCertificato.TabIndex = 12;
             // 
             // BtnTrovaFileP7mCertificati
             // 
-            BtnTrovaFileP7mCertificati.Location = new Point(325, 37);
+            BtnTrovaFileP7mCertificati.Location = new Point(320, 28);
             BtnTrovaFileP7mCertificati.Name = "BtnTrovaFileP7mCertificati";
             BtnTrovaFileP7mCertificati.Size = new Size(31, 23);
             BtnTrovaFileP7mCertificati.TabIndex = 11;
@@ -336,7 +336,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(8, 22);
+            label4.Location = new Point(3, 10);
             label4.Name = "label4";
             label4.Size = new Size(142, 15);
             label4.TabIndex = 18;
@@ -344,7 +344,7 @@
             // 
             // BtnVerifica
             // 
-            BtnVerifica.Location = new Point(8, 69);
+            BtnVerifica.Location = new Point(3, 57);
             BtnVerifica.Name = "BtnVerifica";
             BtnVerifica.Size = new Size(142, 23);
             BtnVerifica.TabIndex = 17;
@@ -354,14 +354,14 @@
             // 
             // TxtPercorsoFileP7mVerifica
             // 
-            TxtPercorsoFileP7mVerifica.Location = new Point(8, 40);
+            TxtPercorsoFileP7mVerifica.Location = new Point(3, 28);
             TxtPercorsoFileP7mVerifica.Name = "TxtPercorsoFileP7mVerifica";
             TxtPercorsoFileP7mVerifica.Size = new Size(311, 23);
             TxtPercorsoFileP7mVerifica.TabIndex = 16;
             // 
             // BtnTrovaFilePerVerifica
             // 
-            BtnTrovaFilePerVerifica.Location = new Point(325, 40);
+            BtnTrovaFilePerVerifica.Location = new Point(320, 28);
             BtnTrovaFilePerVerifica.Name = "BtnTrovaFilePerVerifica";
             BtnTrovaFilePerVerifica.Size = new Size(31, 23);
             BtnTrovaFilePerVerifica.TabIndex = 15;

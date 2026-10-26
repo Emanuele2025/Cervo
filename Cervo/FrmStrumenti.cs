@@ -416,14 +416,15 @@ namespace Cervo
             // Verifica se il file esiste
             if (!File.Exists(percorso))
             {
-                //result.IsValid = false;
-                //result.StatusMessage = $"File non trovato: {p7mFilePath}";
-                //return result;
+                Utility.MessaggioInfo($"File non trovato: {percorso}");
+                return;
             }
 
             // Verifica se ha estensione .p7m
             if (!percorso.EndsWith(".p7m", StringComparison.OrdinalIgnoreCase))
             {
+                Utility.MessaggioInfo("Il file non ha estensione .p7m");
+                return;
                 //result.IsValid = false;
                 //result.StatusMessage = "Il file non ha estensione .p7m";
                 //return result;
@@ -717,7 +718,6 @@ namespace Cervo
             if (string.IsNullOrEmpty(TxtPercorsoFileP7mVerifica.Text.Trim()))
             {
                 Utility.MessaggioInfo("Selezionare un file firmato di tipo .p7m");
-
                 return;
 
             }
