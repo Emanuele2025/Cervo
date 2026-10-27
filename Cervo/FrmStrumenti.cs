@@ -425,9 +425,7 @@ namespace Cervo
             {
                 Utility.MessaggioInfo("Il file non ha estensione .p7m");
                 return;
-                //result.IsValid = false;
-                //result.StatusMessage = "Il file non ha estensione .p7m";
-                //return result;
+                
             }
 
             // Leggi il contenuto del file
@@ -440,9 +438,9 @@ namespace Cervo
             // Verifica se sono presenti certificati
             if (signedCms.Certificates.Count == 0)
             {
-                //result.IsValid = false;
-                //result.StatusMessage = "Nessun certificato trovato nel file .p7m";
-                //return result;
+                Utility.MessaggioInfo("INessun certificato trovato nel file .p7m");
+                return;
+                 
             }
 
             // Estrai il certificato firmante (il primo)
