@@ -33,6 +33,7 @@
             BtnFirma = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
+            BtnFirmaClassiNet = new Button();
             SuspendLayout();
             // 
             // label1
@@ -54,7 +55,7 @@
             // 
             // BtnFirma
             // 
-            BtnFirma.Location = new Point(51, 363);
+            BtnFirma.Location = new Point(12, 98);
             BtnFirma.Name = "BtnFirma";
             BtnFirma.Size = new Size(75, 23);
             BtnFirma.TabIndex = 2;
@@ -89,11 +90,22 @@
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 
+            // BtnFirmaClassiNet
+            // 
+            BtnFirmaClassiNet.Location = new Point(119, 98);
+            BtnFirmaClassiNet.Name = "BtnFirmaClassiNet";
+            BtnFirmaClassiNet.Size = new Size(75, 23);
+            BtnFirmaClassiNet.TabIndex = 10;
+            BtnFirmaClassiNet.Text = "Firma";
+            BtnFirmaClassiNet.UseVisualStyleBackColor = true;
+            BtnFirmaClassiNet.Click += BtnFirmaClassiNet_Click;
+            // 
             // FrmFirma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(828, 450);
+            Controls.Add(BtnFirmaClassiNet);
             Controls.Add(BtnChiudi);
             Controls.Add(label2);
             Controls.Add(BtnFirma);
@@ -117,5 +129,6 @@
         private Button BtnFirma;
         private Label label2;
         private Button BtnChiudi;
+        private Button BtnFirmaClassiNet;
     }
 }

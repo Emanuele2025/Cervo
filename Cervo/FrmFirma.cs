@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -21,6 +22,7 @@ namespace Cervo
         {
             //3 ottobre rivedere
             this.Text = Utility.TitoloFinestra;
+            LoadCertificates(CmbCertificati);
         }
 
 
@@ -48,14 +50,14 @@ namespace Cervo
                 else
                 {
                     Utility.MessaggioInfo("Nessun certificato disponibile con chiave privata.");
-                    
+
                 }
                 store.Close();
             }
             catch (Exception ex)
             {
-                Utility.MessaggioErrore(Utility.Errore + ex.Message );
-                 
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
+
             }
         }
         #endregion
@@ -116,6 +118,41 @@ namespace Cervo
         private void BtnChiudi_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnFirmaClassiNet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //Frammento di codice da verificare
+
+                byte[] dati = File.ReadAllBytes(@"C:\varie\fileDaFirmare.jpg");
+
+                using var cert = ((CertificateItem)CmbCertificati.SelectedItem).Certificate;
+                if (!cert.HasPrivateKey)
+                    throw new InvalidOperationException("Il certificato non dispone della chiave privata.");
+
+                var cms = new SignedCms(new ContentInfo(dati), detached: false);
+                var firmatario = new CmsSigner(
+                    SubjectIdentifierType.IssuerAndSerialNumber, cert)
+                {
+                    IncludeOption = X509IncludeOption.EndCertOnly,
+                    DigestAlgorithm = new Oid("2.16.840.1.101.3.4.2.1") // SHA-256
+                };
+
+                cms.ComputeSignature(firmatario);
+                File.WriteAllBytes(@"C:\varie\fileDaFirmare.jpg" + ".p7m", cms.Encode());
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 
