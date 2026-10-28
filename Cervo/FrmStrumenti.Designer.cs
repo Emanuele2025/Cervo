@@ -81,7 +81,7 @@
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
-            TbcFunzionalita.Size = new Size(800, 281);
+            TbcFunzionalita.Size = new Size(800, 384);
             TbcFunzionalita.TabIndex = 0;
             // 
             // TbpCertificato
@@ -94,7 +94,7 @@
             TbpCertificato.Location = new Point(4, 24);
             TbpCertificato.Name = "TbpCertificato";
             TbpCertificato.Padding = new Padding(3);
-            TbpCertificato.Size = new Size(792, 253);
+            TbpCertificato.Size = new Size(792, 356);
             TbpCertificato.TabIndex = 0;
             TbpCertificato.Text = "Certificato";
             TbpCertificato.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@
             // 
             rtbResults.Location = new Point(409, 22);
             rtbResults.Name = "rtbResults";
-            rtbResults.Size = new Size(334, 235);
+            rtbResults.Size = new Size(334, 316);
             rtbResults.TabIndex = 3;
             rtbResults.Text = "";
             // 

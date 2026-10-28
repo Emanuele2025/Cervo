@@ -25,89 +25,8 @@ namespace Cervo
             this.Text = Utility.TitoloFinestra;
         }
 
-        public static SignatureInfo VerifySignature(string p7mFilePath)
-        {
-            var signatureInfo = new SignatureInfo();
 
-            try
-            {
-                if (!File.Exists(p7mFilePath))
-                {
-                    signatureInfo.IsValid = false;
-                    signatureInfo.Message = "File non trovato.";
-                    return signatureInfo;
-                }
-
-                // Leggi il file P7M
-                byte[] signedData = File.ReadAllBytes(p7mFilePath);
-
-                // Decodifica il SignedCms
-                SignedCms signedCms = new SignedCms();
-                signedCms.Decode(signedData);
-
-                // Verifica la firma (senza validare la catena di certificati)
-                try
-                {
-                    signedCms.CheckSignature(true);
-                    signatureInfo.IsValid = true;
-                    signatureInfo.Message = "Firma valida.";
-                }
-                catch
-                {
-                    signatureInfo.IsValid = false;
-                    signatureInfo.Message = "Firma non valida.";
-                    return signatureInfo;
-                }
-
-                // Estrai le informazioni dei certificati
-                signatureInfo.SignerCertificates = new List<CertificateInfo>();
-
-                foreach (SignerInfo signer in signedCms.SignerInfos)
-                {
-                    X509Certificate2 signerCert = null;
-
-                    // Cerca il certificato del firmatario
-                    foreach (X509Certificate2 cert in signedCms.Certificates)
-                    {
-                        if (cert.Thumbprint == signer.Certificate.Thumbprint)
-                        {
-                            signerCert = cert;
-                            break;
-                        }
-                    }
-
-                    if (signerCert != null)
-                    {
-                        var certInfo = new CertificateInfo
-                        {
-                            Subject = signerCert.SubjectName.Name,
-                            Issuer = signerCert.IssuerName.Name,
-                            ValidFrom = signerCert.NotBefore,
-                            ValidTo = signerCert.NotAfter,
-                            Thumbprint = signerCert.Thumbprint,
-                            SerialNumber = signerCert.SerialNumber,
-                            IsExpired = signerCert.NotAfter < DateTime.Now,
-                            SigningTime = signer.SignedAttributes.Cast<CryptographicAttributeObject>()
-                                .Where(a => a.Oid.Value == "1.2.840.113549.1.9.3")
-                                .FirstOrDefault() != null
-                        };
-
-                        signatureInfo.SignerCertificates.Add(certInfo);
-                    }
-                }
-
-                // Estrai il contenuto originale
-                signatureInfo.OriginalContent = signedCms.ContentInfo.Content;
-
-                return signatureInfo;
-            }
-            catch (Exception ex)
-            {
-                signatureInfo.IsValid = false;
-                signatureInfo.Message = $"Errore nella verifica: {ex.Message}";
-                return signatureInfo;
-            }
-        }
+       
 
         /// <summary>
         /// Estrae il file originale dal P7M
@@ -174,6 +93,8 @@ namespace Cervo
 
         private void BtnVerificaCertificato_Click(object sender, EventArgs e)
         {
+            //TODO:
+            //verificare se quando è scaduta è comunque errore la firma, ossia non valida.
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
                 MessageBox.Show("Selezionare un file P7M.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -725,6 +646,116 @@ namespace Cervo
             //Eseguo la funzione
             VerificatoStatoCertificato(certificate);
         }
+
+
+        #region Funzioni
+
+        /// <summary>
+        /// Funzione per estrapolare le informazioni da un file firmato digitalmente formato p7m
+        /// </summary>
+        /// <param name="p7mFilePath"></param>
+        /// <returns></returns>
+        public static SignatureInfo VerifySignature(string p7mFilePath)
+        {
+            var signatureInfo = new SignatureInfo();
+
+            try
+            {
+                if (!File.Exists(p7mFilePath))
+                {
+                    signatureInfo.IsValid = false;
+                    signatureInfo.Message = "File non trovato.";
+                    return signatureInfo;
+                }
+
+                // Leggi il file P7M
+                byte[] signedData = File.ReadAllBytes(p7mFilePath);
+
+                // Decodifica il SignedCms
+                SignedCms signedCms = new SignedCms();
+                signedCms.Decode(signedData);
+
+                // Verifica la firma (senza validare la catena di certificati)
+                try
+                {
+                    signedCms.CheckSignature(true);
+                    signatureInfo.IsValid = true;
+                    signatureInfo.Message = "Firma valida.";
+                }
+                catch
+                {
+                    signatureInfo.IsValid = false;
+                    signatureInfo.Message = "Firma non valida.";
+                    return signatureInfo;
+                }
+
+                // Estrai le informazioni dei certificati
+                signatureInfo.SignerCertificates = new List<CertificateInfo>();
+
+                foreach (SignerInfo signer in signedCms.SignerInfos)
+                {
+                    X509Certificate2 signerCert = null;
+
+                    // Cerca il certificato del firmatario
+                    foreach (X509Certificate2 cert in signedCms.Certificates)
+                    {
+                        if (cert.Thumbprint == signer.Certificate.Thumbprint)
+                        {
+                            signerCert = cert;
+                            break;
+                        }
+                    }
+
+                    if (signerCert != null)
+                    {
+                        var certInfo = new CertificateInfo
+                        {
+                            Subject = signerCert.SubjectName.Name,
+                            Issuer = signerCert.IssuerName.Name,
+                            ValidFrom = signerCert.NotBefore,
+                            ValidTo = signerCert.NotAfter,
+                            Thumbprint = signerCert.Thumbprint,
+                            SerialNumber = signerCert.SerialNumber,
+                            IsExpired = signerCert.NotAfter < DateTime.Now,
+                            SigningTime = signer.SignedAttributes.Cast<CryptographicAttributeObject>()
+                                .Where(a => a.Oid.Value == "1.2.840.113549.1.9.3")
+                                .FirstOrDefault() != null
+                        };
+
+                        signatureInfo.SignerCertificates.Add(certInfo);
+                    }
+                }
+
+                // Estrai il contenuto originale
+                signatureInfo.OriginalContent = signedCms.ContentInfo.Content;
+
+                return signatureInfo;
+            }
+            catch (Exception ex)
+            {
+                signatureInfo.IsValid = false;
+                signatureInfo.Message = $"Errore nella verifica: {ex.Message}";
+                return signatureInfo;
+            }
+        }
+
+
+
+
+
+
+
+
+        #endregion
+
+
+
+
+
+
+
+
+
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
