@@ -26,7 +26,7 @@ namespace Cervo
         }
 
 
-       
+
 
         /// <summary>
         /// Estrae il file originale dal P7M
@@ -97,14 +97,14 @@ namespace Cervo
             //verificare se quando è scaduta è comunque errore la firma, ossia non valida.
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
-                MessageBox.Show("Selezionare un file P7M.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioInfo("Selezionare un file P7M.");
                 return;
             }
 
             try
             {
                 SignatureInfo signatureInfo = VerifySignature(TxtPercorsoFileFirmato.Text);
-
+               
                 rtbResults.Clear();
                 rtbResults.AppendText($"Stato Firma: {(signatureInfo.IsValid ? "VALIDA" : "NON VALIDA")}\n");
                 rtbResults.AppendText($"Messaggio: {signatureInfo.Message}\n\n");
@@ -346,7 +346,7 @@ namespace Cervo
             {
                 Utility.MessaggioInfo("Il file non ha estensione .p7m");
                 return;
-                
+
             }
 
             // Leggi il contenuto del file
@@ -361,7 +361,7 @@ namespace Cervo
             {
                 Utility.MessaggioInfo("INessun certificato trovato nel file .p7m");
                 return;
-                 
+
             }
 
             // Estrai il certificato firmante (il primo)
@@ -540,7 +540,7 @@ namespace Cervo
             if (oggi < certificate.NotBefore)
             {
                 Utility.MessaggioInfo($"Il certificato non è ancora valido.\nInizio validità: {certificate.NotBefore}");
-                
+
                 return;
             }
             if (oggi > certificate.NotAfter)
@@ -739,23 +739,7 @@ namespace Cervo
             }
         }
 
-
-
-
-
-
-
-
         #endregion
-
-
-
-
-
-
-
-
-
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m

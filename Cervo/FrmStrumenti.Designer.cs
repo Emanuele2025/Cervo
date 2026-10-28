@@ -152,7 +152,7 @@
             TbpVerifica.Location = new Point(4, 24);
             TbpVerifica.Name = "TbpVerifica";
             TbpVerifica.Padding = new Padding(3);
-            TbpVerifica.Size = new Size(792, 253);
+            TbpVerifica.Size = new Size(792, 356);
             TbpVerifica.TabIndex = 1;
             TbpVerifica.Text = "Verifica Firma";
             TbpVerifica.UseVisualStyleBackColor = true;
@@ -190,7 +190,7 @@
             TbpVerificaFirma.Controls.Add(BtnTrovaCertificatoFileFirmato);
             TbpVerificaFirma.Location = new Point(4, 24);
             TbpVerificaFirma.Name = "TbpVerificaFirma";
-            TbpVerificaFirma.Size = new Size(792, 253);
+            TbpVerificaFirma.Size = new Size(792, 356);
             TbpVerificaFirma.TabIndex = 2;
             TbpVerificaFirma.Text = "Verifica Firma";
             TbpVerificaFirma.UseVisualStyleBackColor = true;
@@ -230,7 +230,7 @@
             TbpEstraiFile.Controls.Add(BtnTrovaFilePerEstraiFile);
             TbpEstraiFile.Location = new Point(4, 24);
             TbpEstraiFile.Name = "TbpEstraiFile";
-            TbpEstraiFile.Size = new Size(792, 253);
+            TbpEstraiFile.Size = new Size(792, 356);
             TbpEstraiFile.TabIndex = 3;
             TbpEstraiFile.Text = "Estrai File";
             TbpEstraiFile.UseVisualStyleBackColor = true;
@@ -279,7 +279,7 @@
             TbpEstraiCertifcato.Controls.Add(BtnTrovaFileP7mCertificati);
             TbpEstraiCertifcato.Location = new Point(4, 24);
             TbpEstraiCertifcato.Name = "TbpEstraiCertifcato";
-            TbpEstraiCertifcato.Size = new Size(792, 253);
+            TbpEstraiCertifcato.Size = new Size(792, 356);
             TbpEstraiCertifcato.TabIndex = 4;
             TbpEstraiCertifcato.Text = "Estrai Certificato";
             TbpEstraiCertifcato.UseVisualStyleBackColor = true;
@@ -328,7 +328,7 @@
             TbpVerificaCertificato.Controls.Add(BtnTrovaFilePerVerifica);
             TbpVerificaCertificato.Location = new Point(4, 24);
             TbpVerificaCertificato.Name = "TbpVerificaCertificato";
-            TbpVerificaCertificato.Size = new Size(792, 253);
+            TbpVerificaCertificato.Size = new Size(792, 356);
             TbpVerificaCertificato.TabIndex = 5;
             TbpVerificaCertificato.Text = "Verifica Certificato";
             TbpVerificaCertificato.UseVisualStyleBackColor = true;
