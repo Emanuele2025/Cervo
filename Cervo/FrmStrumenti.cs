@@ -104,7 +104,7 @@ namespace Cervo
             try
             {
                 SignatureInfo signatureInfo = VerifySignature(TxtPercorsoFileFirmato.Text);
-               
+
                 rtbResults.Clear();
                 rtbResults.AppendText($"Stato Firma: {(signatureInfo.IsValid ? "VALIDA" : "NON VALIDA")}\n");
                 rtbResults.AppendText($"Messaggio: {signatureInfo.Message}\n\n");
@@ -740,6 +740,31 @@ namespace Cervo
         }
 
         #endregion
+
+        private void BtnEsporta_Click(object sender, EventArgs e)
+        {
+            using (SaveFileDialog dlg = new SaveFileDialog
+            {
+                Title = "Salva file",
+                Filter = "File RTF (*.rtf)|*.rtf|Testo (*.txt)|*.txt",
+                DefaultExt = "rtf",
+                FileName = "Documento.rtf"
+            })
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        // Salva come RTF senza oggetti OLE
+                        rtbResults.SaveFile(dlg.FileName, RichTextBoxStreamType.RichNoOleObjs);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Errore: {ex.Message}", "Errore salvataggio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m

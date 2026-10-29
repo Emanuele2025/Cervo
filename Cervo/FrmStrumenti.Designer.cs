@@ -60,6 +60,7 @@
             BtnTrovaFilePerVerifica = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
+            BtnEsporta = new Button();
             TbcFunzionalita.SuspendLayout();
             TbpCertificato.SuspendLayout();
             TbpVerifica.SuspendLayout();
@@ -86,6 +87,7 @@
             // 
             // TbpCertificato
             // 
+            TbpCertificato.Controls.Add(BtnEsporta);
             TbpCertificato.Controls.Add(BtnEstraiCertificato);
             TbpCertificato.Controls.Add(rtbResults);
             TbpCertificato.Controls.Add(BtnVerificaCertificato);
@@ -396,6 +398,16 @@
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
             // 
+            // BtnEsporta
+            // 
+            BtnEsporta.Location = new Point(107, 93);
+            BtnEsporta.Name = "BtnEsporta";
+            BtnEsporta.Size = new Size(108, 23);
+            BtnEsporta.TabIndex = 5;
+            BtnEsporta.Text = "Esporta";
+            BtnEsporta.UseVisualStyleBackColor = true;
+            BtnEsporta.Click += BtnEsporta_Click;
+            // 
             // FrmStrumenti
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -458,5 +470,6 @@
         private Button BtnVerifica;
         private TextBox TxtPercorsoFileP7mVerifica;
         private Button BtnTrovaFilePerVerifica;
+        private Button BtnEsporta;
     }
 }
