@@ -745,7 +745,7 @@ namespace Cervo
         {
             using (SaveFileDialog dlg = new SaveFileDialog
             {
-                Title = "Salva file",
+                Title = "Salva file in formato RTF",
                 Filter = "File RTF (*.rtf)|*.rtf|Testo (*.txt)|*.txt",
                 DefaultExt = "rtf",
                 FileName = "Documento.rtf"
@@ -760,7 +760,7 @@ namespace Cervo
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Errore: {ex.Message}", "Errore salvataggio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Utility.MessaggioErrore(Utility.Errore + ex.Message);
                     }
                 }
             }
