@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using static Cervo.Models.CertificateValidator;
 
@@ -765,6 +766,191 @@ namespace Cervo
                 }
             }
         }
+
+        private void BtnTrovaPdfFirmato_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file PDF";
+                openFileDialog.Filter = "File Pdf (*.pdf)|*.pdf";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoNomeFilePdf.Text = openFileDialog.FileName;
+                }
+            }
+        }
+
+        private void BtnLeggiCertificatoPdf_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //TODO: Sistemare la formattazione
+                dtgCertificatiFilePdf.DataSource = null;
+
+                //Verifico se è stato selezionato il file
+
+                if (string.IsNullOrEmpty(TxtPercorsoNomeFilePdf.Text.Trim()))
+                {
+
+                    Utility.MessaggioInfo("Selezionare un file PDF.");
+
+                    return;
+
+                }
+
+                List<DtoFirmaDigitale> certificatiTrovati = new List<DtoFirmaDigitale>();
+
+                string pdfPath = TxtPercorsoNomeFilePdf.Text.Trim();
+
+                byte[] pdfBytes = File.ReadAllBytes(pdfPath);
+
+                string pdfText = Encoding.ASCII.GetString(pdfBytes);
+
+
+
+                // Trova TUTTI i blocchi /Contents <...>
+
+                MatchCollection matches = Regex.Matches(pdfText, @"/Contents\s*<([0-9A-Fa-f]+)>");
+
+
+
+                if (matches.Count == 0)
+
+                {
+
+                    Utility.MessaggioInfo("Nessuna firma digitale trovata nel PDF.");
+
+                    return;
+
+                }
+
+
+
+
+
+
+
+                int firmaIndex = 1;
+
+                foreach (Match match in matches)
+
+                {
+
+                    try
+
+                    {
+
+                        byte[] signatureBytes = HexStringToBytes(match.Groups[1].Value);
+
+
+
+                        SignedCms cms = new SignedCms();
+
+                        cms.Decode(signatureBytes);
+
+
+
+                        foreach (var firma in cms.SignerInfos)
+
+                        {
+
+                            X509Certificate2 cert = firma.Certificate;
+
+                            DtoFirmaDigitale dtoCertificato = new DtoFirmaDigitale()
+
+                            {
+
+                                Oggetto = cert.Subject,
+
+                                EmessoDa = cert.Issuer,
+
+                                DataInizio = cert.NotBefore,
+
+                                DataFine = cert.NotAfter,
+
+                                Algoritmo = cert.SignatureAlgorithm.FriendlyName,
+
+                                Seriale = cert.SerialNumber
+
+
+
+
+
+                            };
+
+
+
+
+
+                            certificatiTrovati.Add(dtoCertificato);
+
+                        }
+
+                    }
+
+                    catch (Exception ex)
+
+                    {
+
+                        Utility.MessaggioErrore($"Errore nella lettura della firma #{firmaIndex}: {ex.Message}\n");
+
+                    }
+
+
+
+                    firmaIndex++;
+
+                }
+
+
+
+                dtgCertificatiFilePdf.DataSource = certificatiTrovati;
+
+
+
+
+
+            }
+
+            catch (Exception ex)
+
+            {
+
+                Utility.MessaggioErrore(ex.Message);
+
+
+
+            }
+        }
+
+        byte[] HexStringToBytes(string hex)
+
+        {
+
+            if (hex.Length % 2 != 0)
+
+                throw new ArgumentException("Stringa esadecimale non valida.");
+
+
+
+            byte[] bytes = new byte[hex.Length / 2];
+
+            for (int i = 0; i < bytes.Length; i++)
+
+                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+
+
+
+            return bytes;
+
+        }
+
+
+
+
+
+
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
