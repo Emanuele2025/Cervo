@@ -785,80 +785,43 @@ namespace Cervo
         {
             try
             {
-                //TODO: Sistemare la formattazione
+                
                 dtgCertificatiFilePdf.DataSource = null;
 
                 //Verifico se è stato selezionato il file
 
                 if (string.IsNullOrEmpty(TxtPercorsoNomeFilePdf.Text.Trim()))
                 {
-
                     Utility.MessaggioInfo("Selezionare un file PDF.");
-
                     return;
-
                 }
 
                 List<DtoFirmaDigitale> certificatiTrovati = new List<DtoFirmaDigitale>();
-
                 string pdfPath = TxtPercorsoNomeFilePdf.Text.Trim();
-
                 byte[] pdfBytes = File.ReadAllBytes(pdfPath);
-
                 string pdfText = Encoding.ASCII.GetString(pdfBytes);
-
-
-
                 // Trova TUTTI i blocchi /Contents <...>
-
                 MatchCollection matches = Regex.Matches(pdfText, @"/Contents\s*<([0-9A-Fa-f]+)>");
-
-
-
                 if (matches.Count == 0)
-
                 {
-
                     Utility.MessaggioInfo("Nessuna firma digitale trovata nel PDF.");
-
                     return;
-
                 }
 
-
-
-
-
-
-
                 int firmaIndex = 1;
-
                 foreach (Match match in matches)
-
                 {
-
                     try
-
                     {
-
                         byte[] signatureBytes = HexStringToBytes(match.Groups[1].Value);
-
-
-
                         SignedCms cms = new SignedCms();
 
                         cms.Decode(signatureBytes);
 
-
-
                         foreach (var firma in cms.SignerInfos)
-
                         {
-
                             X509Certificate2 cert = firma.Certificate;
-
                             DtoFirmaDigitale dtoCertificato = new DtoFirmaDigitale()
-
                             {
 
                                 Oggetto = cert.Subject,
@@ -878,49 +841,22 @@ namespace Cervo
 
 
                             };
-
-
-
-
-
                             certificatiTrovati.Add(dtoCertificato);
-
                         }
-
                     }
-
                     catch (Exception ex)
-
                     {
-
                         Utility.MessaggioErrore($"Errore nella lettura della firma #{firmaIndex}: {ex.Message}\n");
-
                     }
-
-
 
                     firmaIndex++;
-
                 }
 
-
-
                 dtgCertificatiFilePdf.DataSource = certificatiTrovati;
-
-
-
-
-
             }
-
             catch (Exception ex)
-
             {
-
                 Utility.MessaggioErrore(ex.Message);
-
-
-
             }
         }
 
