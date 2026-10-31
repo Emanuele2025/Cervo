@@ -740,6 +740,45 @@ namespace Cervo
             }
         }
 
+
+
+
+        /// <summary>
+        /// Permette di rilevare la firma nel file pdf
+        /// </summary>
+        /// <param name="hex"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        byte[] HexStringToBytes(string hex)
+
+        {
+
+            if (hex.Length % 2 != 0)
+
+                throw new ArgumentException("Stringa esadecimale non valida.");
+
+
+
+            byte[] bytes = new byte[hex.Length / 2];
+
+            for (int i = 0; i < bytes.Length; i++)
+
+                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
+
+
+
+            return bytes;
+
+        }
+
+
+
+
+
+
+
+
+
         #endregion
 
         private void BtnEsporta_Click(object sender, EventArgs e)
@@ -860,27 +899,7 @@ namespace Cervo
             }
         }
 
-        byte[] HexStringToBytes(string hex)
-
-        {
-
-            if (hex.Length % 2 != 0)
-
-                throw new ArgumentException("Stringa esadecimale non valida.");
-
-
-
-            byte[] bytes = new byte[hex.Length / 2];
-
-            for (int i = 0; i < bytes.Length; i++)
-
-                bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
-
-
-
-            return bytes;
-
-        }
+        
 
 
 
