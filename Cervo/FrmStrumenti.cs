@@ -156,7 +156,8 @@ namespace Cervo
         {
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
-                MessageBox.Show("Selezionare un file P7M.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.MessaggioInfo(("Selezionare un file P7M."));
+                //MessageBox.Show("Selezionare un file P7M.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
