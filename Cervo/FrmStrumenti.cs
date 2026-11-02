@@ -645,7 +645,7 @@ namespace Cervo
 
             X509Certificate2 certificate = new X509Certificate2(TxtPercorsoFileP7mVerifica.Text.Trim());
 
-            //Eseguo la funzione
+            //Eseguo la funzione per la verifica del certificato
             VerificatoStatoCertificato(certificate);
         }
 

@@ -177,6 +177,7 @@
             BtnVerifica.Size = new Size(142, 23);
             BtnVerifica.TabIndex = 17;
             BtnVerifica.Text = "Verifica Certificato";
+            TltDescrizione.SetToolTip(BtnVerifica, "Verifica se un file firmato p7m ha un certificato valido che non sia scaduto o altro");
             BtnVerifica.UseVisualStyleBackColor = true;
             BtnVerifica.Click += BtnVerifica_Click;
             // 
@@ -184,6 +185,7 @@
             // 
             TxtPercorsoFileP7mVerifica.Location = new Point(3, 28);
             TxtPercorsoFileP7mVerifica.Name = "TxtPercorsoFileP7mVerifica";
+            TxtPercorsoFileP7mVerifica.ReadOnly = true;
             TxtPercorsoFileP7mVerifica.Size = new Size(311, 23);
             TxtPercorsoFileP7mVerifica.TabIndex = 16;
             // 
@@ -194,6 +196,7 @@
             BtnTrovaFilePerVerifica.Size = new Size(31, 23);
             BtnTrovaFilePerVerifica.TabIndex = 15;
             BtnTrovaFilePerVerifica.Text = "...";
+            TltDescrizione.SetToolTip(BtnTrovaFilePerVerifica, "Apre la finestra per trovare il file firmato digitalmente");
             BtnTrovaFilePerVerifica.UseVisualStyleBackColor = true;
             BtnTrovaFilePerVerifica.Click += BtnTrovaFilePerVerifica_Click;
             // 
@@ -227,6 +230,7 @@
             BtnLeggiCertificatoPdf.Size = new Size(142, 23);
             BtnLeggiCertificatoPdf.TabIndex = 21;
             BtnLeggiCertificatoPdf.Text = "Rileva certificati";
+            TltDescrizione.SetToolTip(BtnLeggiCertificatoPdf, "Rileva tutti i certificati di un file pdf");
             BtnLeggiCertificatoPdf.UseVisualStyleBackColor = true;
             BtnLeggiCertificatoPdf.Click += BtnLeggiCertificatoPdf_Click;
             // 
@@ -244,6 +248,7 @@
             BtnTrovaPdfFirmato.Size = new Size(31, 23);
             BtnTrovaPdfFirmato.TabIndex = 19;
             BtnTrovaPdfFirmato.Text = "...";
+            TltDescrizione.SetToolTip(BtnTrovaPdfFirmato, "Apre la finestra per cercare i file firmato digitalmente pdf");
             BtnTrovaPdfFirmato.UseVisualStyleBackColor = true;
             BtnTrovaPdfFirmato.Click += BtnTrovaPdfFirmato_Click;
             // 
