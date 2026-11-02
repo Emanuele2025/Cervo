@@ -39,7 +39,7 @@
             TxtEmail = new TextBox();
             lnlEmail = new LinkLabel();
             label7 = new Label();
-            linkLabel1 = new LinkLabel();
+            lnkFreeIcon = new LinkLabel();
             lkluxwing = new LinkLabel();
             label8 = new Label();
             lnkduckduckgo = new LinkLabel();
@@ -156,15 +156,16 @@
             label7.TabIndex = 32;
             label7.Text = "Le icone e le immagini utilizzate in questo programma provengono dai siti elencati di seguito, che le mettono gratuitamente a disposizione dei propri utenti.";
             // 
-            // linkLabel1
+            // lnkFreeIcon
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Location = new Point(424, 427);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(500, 15);
-            linkLabel1.TabIndex = 38;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Alcune icone utilizzate in questo programma sono fornite da  freeicon https://freeicon.com/it";
+            lnkFreeIcon.AutoSize = true;
+            lnkFreeIcon.Location = new Point(424, 427);
+            lnkFreeIcon.Name = "lnkFreeIcon";
+            lnkFreeIcon.Size = new Size(500, 15);
+            lnkFreeIcon.TabIndex = 38;
+            lnkFreeIcon.TabStop = true;
+            lnkFreeIcon.Text = "Alcune icone utilizzate in questo programma sono fornite da  freeicon https://freeicon.com/it";
+            lnkFreeIcon.LinkClicked += lnkFreeIcon_LinkClicked;
             // 
             // lkluxwing
             // 
@@ -202,7 +203,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(943, 538);
-            Controls.Add(linkLabel1);
+            Controls.Add(lnkFreeIcon);
             Controls.Add(lkluxwing);
             Controls.Add(label8);
             Controls.Add(lnkduckduckgo);
@@ -242,7 +243,7 @@
         private TextBox TxtEmail;
         private LinkLabel lnlEmail;
         private Label label7;
-        private LinkLabel linkLabel1;
+        private LinkLabel lnkFreeIcon;
         private LinkLabel lkluxwing;
         private Label label8;
         private LinkLabel lnkduckduckgo;

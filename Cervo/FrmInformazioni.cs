@@ -83,5 +83,23 @@ namespace Cervo
 
             }
         }
+
+        private void lnkFreeIcon_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "https://freeicon.com/it",
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception ex)
+            {
+                Utility.MessaggioErrore("Impossibile aprire il sito: " + ex.Message);
+
+            }
+        }
     }
 }
