@@ -238,6 +238,7 @@
             // 
             TxtPercorsoNomeFilePdf.Location = new Point(8, 282);
             TxtPercorsoNomeFilePdf.Name = "TxtPercorsoNomeFilePdf";
+            TxtPercorsoNomeFilePdf.ReadOnly = true;
             TxtPercorsoNomeFilePdf.Size = new Size(311, 23);
             TxtPercorsoNomeFilePdf.TabIndex = 20;
             // 
