@@ -443,6 +443,77 @@ namespace Cervo
                     return;
 
                 }
+                if (TxtPercorsoNomeFilePerEstraiFile.Text.Trim() == "")
+                {
+                    MessageBox.Show("Selezionare un file firmato digitalmente, di tipo p7m");
+                }
+                using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                {
+                    saveFileDialog.Title = "Salva contenuto estratto";
+                    saveFileDialog.FileName = Path.GetFileNameWithoutExtension(TxtPercorsoNomeFilePerEstraiFile.Text);
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+
+                        byte[] FileFirmatoP7m = File.ReadAllBytes(TxtPercorsoNomeFilePerEstraiFile.Text);
+                        if (FileFirmatoP7m == null)
+                            throw new ArgumentNullException("Errore nel file firmato selezionato.");
+                        //Uso la classe per estrapolare il fle
+                        SignedCms cmsFirmato = new();
+                        cmsFirmato.Decode(FileFirmatoP7m);
+                        if (cmsFirmato.Detached)
+                            throw new InvalidOperationException("Errore nella fase di estrapolazione del contenuto dal file firmato.");
+                        //Estrapola l'array byte del file firmato
+                        byte[] FileRilevato = cmsFirmato.ContentInfo.Content;
+
+                        //Nome del file che viene generato
+                        string NomeFileDaCreare = new FileInfo(TxtPercorsoNomeFilePerEstraiFile.Text).Name.Replace(new FileInfo(TxtPercorsoNomeFilePerEstraiFile.Text).Extension, "");
+
+                        File.WriteAllBytes(saveFileDialog.FileName, FileRilevato);
+                        MessageBox.Show($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}",
+                               "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                        //if (ExtractContentFromP7M(TxtPercorsoFileFirmato.Text, saveFileDialog.FileName))
+                        //{
+                        //    MessageBox.Show($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}",
+                        //        "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Errore nell'estrazione del contenuto.",
+                        //        "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                    }
+                }
+
+
+
+
+
+                //byte[] FileFirmatoP7m = File.ReadAllBytes(TxtPercorsoNomeFilePerEstraiFile.Text);
+                //if (FileFirmatoP7m == null)
+                //    throw new ArgumentNullException("Errore nel file firmato selezionato.");
+                ////Uso la classe per estrapolare il fle
+                //SignedCms cmsFirmato = new();
+                //cmsFirmato.Decode(FileFirmatoP7m);
+                //if (cmsFirmato.Detached)
+                //    throw new InvalidOperationException("Errore nella fase di estrapolazione del contenuto dal file firmato.");
+                ////Estrapola l'array byte del file firmato
+                //byte[] FileRilevato = cmsFirmato.ContentInfo.Content;
+
+                ////Nome del file che viene generato
+                //string NomeFileDaCreare = new FileInfo(TxtPercorsoNomeFilePerEstraiFile.Text).Name.Replace(new FileInfo(TxtPercorsoNomeFilePerEstraiFile.Text).Extension, "");
+
+                //File.WriteAllBytes(Environment.CurrentDirectory + "\\" + NomeFileDaCreare, FileRilevato);
+
+
+
+
+
+
+
+
             }
             catch (Exception ex)
             {
