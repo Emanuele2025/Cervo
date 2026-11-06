@@ -86,10 +86,10 @@
             TbcFunzionalita.Controls.Add(TbpEstraiCertifcato);
             TbcFunzionalita.Controls.Add(TbpVerificaCertificato);
             TbcFunzionalita.Controls.Add(TbpCertificatiDaPdf);
+            TbcFunzionalita.Controls.Add(TbpEstraiFile);
             TbcFunzionalita.Controls.Add(TbpCertificato);
             TbcFunzionalita.Controls.Add(TbpVerifica);
             TbcFunzionalita.Controls.Add(TbpVerificaFirma);
-            TbcFunzionalita.Controls.Add(TbpEstraiFile);
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
