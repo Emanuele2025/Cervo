@@ -46,6 +46,11 @@
             TxtPercorsoNomeFilePdf = new TextBox();
             BtnTrovaPdfFirmato = new Button();
             dtgCertificatiFilePdf = new DataGridView();
+            TbpEstraiFile = new TabPage();
+            label3 = new Label();
+            BtnEstraFileDaP7m = new Button();
+            TxtPercorsoNomeFilePerEstraiFile = new TextBox();
+            BtnTrovaFilePerEstraiFile = new Button();
             TbpCertificato = new TabPage();
             BtnEsporta = new Button();
             BtnEstraiCertificato = new Button();
@@ -61,11 +66,6 @@
             BtnVerificaCertificatoFirmato = new Button();
             TxtPercorsoFileFirmatoDigitalmente = new TextBox();
             BtnTrovaCertificatoFileFirmato = new Button();
-            TbpEstraiFile = new TabPage();
-            label3 = new Label();
-            BtnEstraFileDaP7m = new Button();
-            TxtPercorsoNomeFilePerEstraiFile = new TextBox();
-            BtnTrovaFilePerEstraiFile = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
             TltDescrizione = new ToolTip(components);
@@ -74,10 +74,10 @@
             TbpVerificaCertificato.SuspendLayout();
             TbpCertificatiDaPdf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCertificatiFilePdf).BeginInit();
+            TbpEstraiFile.SuspendLayout();
             TbpCertificato.SuspendLayout();
             TbpVerifica.SuspendLayout();
             TbpVerificaFirma.SuspendLayout();
-            TbpEstraiFile.SuspendLayout();
             SuspendLayout();
             // 
             // TbcFunzionalita
@@ -262,6 +262,56 @@
             dtgCertificatiFilePdf.Size = new Size(792, 243);
             dtgCertificatiFilePdf.TabIndex = 0;
             // 
+            // TbpEstraiFile
+            // 
+            TbpEstraiFile.Controls.Add(label3);
+            TbpEstraiFile.Controls.Add(BtnEstraFileDaP7m);
+            TbpEstraiFile.Controls.Add(TxtPercorsoNomeFilePerEstraiFile);
+            TbpEstraiFile.Controls.Add(BtnTrovaFilePerEstraiFile);
+            TbpEstraiFile.Location = new Point(4, 24);
+            TbpEstraiFile.Name = "TbpEstraiFile";
+            TbpEstraiFile.Size = new Size(792, 356);
+            TbpEstraiFile.TabIndex = 3;
+            TbpEstraiFile.Text = "Estrai File";
+            TbpEstraiFile.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 11);
+            label3.Name = "label3";
+            label3.Size = new Size(206, 15);
+            label3.TabIndex = 15;
+            label3.Text = "Percorso e nome file da cui estrae file:";
+            // 
+            // BtnEstraFileDaP7m
+            // 
+            BtnEstraFileDaP7m.Location = new Point(3, 58);
+            BtnEstraFileDaP7m.Name = "BtnEstraFileDaP7m";
+            BtnEstraFileDaP7m.Size = new Size(115, 23);
+            BtnEstraFileDaP7m.TabIndex = 13;
+            BtnEstraFileDaP7m.Text = "Estrai File";
+            BtnEstraFileDaP7m.UseVisualStyleBackColor = true;
+            BtnEstraFileDaP7m.Click += BtnEstraFileDaP7m_Click;
+            // 
+            // TxtPercorsoNomeFilePerEstraiFile
+            // 
+            TxtPercorsoNomeFilePerEstraiFile.Location = new Point(3, 29);
+            TxtPercorsoNomeFilePerEstraiFile.Name = "TxtPercorsoNomeFilePerEstraiFile";
+            TxtPercorsoNomeFilePerEstraiFile.ReadOnly = true;
+            TxtPercorsoNomeFilePerEstraiFile.Size = new Size(311, 23);
+            TxtPercorsoNomeFilePerEstraiFile.TabIndex = 12;
+            // 
+            // BtnTrovaFilePerEstraiFile
+            // 
+            BtnTrovaFilePerEstraiFile.Location = new Point(320, 29);
+            BtnTrovaFilePerEstraiFile.Name = "BtnTrovaFilePerEstraiFile";
+            BtnTrovaFilePerEstraiFile.Size = new Size(31, 23);
+            BtnTrovaFilePerEstraiFile.TabIndex = 11;
+            BtnTrovaFilePerEstraiFile.Text = "...";
+            BtnTrovaFilePerEstraiFile.UseVisualStyleBackColor = true;
+            BtnTrovaFilePerEstraiFile.Click += BtnTrovaFilePerEstraiFile_Click;
+            // 
             // TbpCertificato
             // 
             TbpCertificato.Controls.Add(BtnEsporta);
@@ -411,55 +461,6 @@
             BtnTrovaCertificatoFileFirmato.UseVisualStyleBackColor = true;
             BtnTrovaCertificatoFileFirmato.Click += BtnTrovaCertificatoFileFirmato_Click;
             // 
-            // TbpEstraiFile
-            // 
-            TbpEstraiFile.Controls.Add(label3);
-            TbpEstraiFile.Controls.Add(BtnEstraFileDaP7m);
-            TbpEstraiFile.Controls.Add(TxtPercorsoNomeFilePerEstraiFile);
-            TbpEstraiFile.Controls.Add(BtnTrovaFilePerEstraiFile);
-            TbpEstraiFile.Location = new Point(4, 24);
-            TbpEstraiFile.Name = "TbpEstraiFile";
-            TbpEstraiFile.Size = new Size(792, 356);
-            TbpEstraiFile.TabIndex = 3;
-            TbpEstraiFile.Text = "Estrai File";
-            TbpEstraiFile.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(3, 11);
-            label3.Name = "label3";
-            label3.Size = new Size(206, 15);
-            label3.TabIndex = 15;
-            label3.Text = "Percorso e nome file da cui estrae file:";
-            // 
-            // BtnEstraFileDaP7m
-            // 
-            BtnEstraFileDaP7m.Location = new Point(3, 58);
-            BtnEstraFileDaP7m.Name = "BtnEstraFileDaP7m";
-            BtnEstraFileDaP7m.Size = new Size(115, 23);
-            BtnEstraFileDaP7m.TabIndex = 13;
-            BtnEstraFileDaP7m.Text = "Estrai File";
-            BtnEstraFileDaP7m.UseVisualStyleBackColor = true;
-            BtnEstraFileDaP7m.Click += BtnEstraFileDaP7m_Click;
-            // 
-            // TxtPercorsoNomeFilePerEstraiFile
-            // 
-            TxtPercorsoNomeFilePerEstraiFile.Location = new Point(3, 29);
-            TxtPercorsoNomeFilePerEstraiFile.Name = "TxtPercorsoNomeFilePerEstraiFile";
-            TxtPercorsoNomeFilePerEstraiFile.Size = new Size(311, 23);
-            TxtPercorsoNomeFilePerEstraiFile.TabIndex = 12;
-            // 
-            // BtnTrovaFilePerEstraiFile
-            // 
-            BtnTrovaFilePerEstraiFile.Location = new Point(320, 29);
-            BtnTrovaFilePerEstraiFile.Name = "BtnTrovaFilePerEstraiFile";
-            BtnTrovaFilePerEstraiFile.Size = new Size(31, 23);
-            BtnTrovaFilePerEstraiFile.TabIndex = 11;
-            BtnTrovaFilePerEstraiFile.Text = "...";
-            BtnTrovaFilePerEstraiFile.UseVisualStyleBackColor = true;
-            BtnTrovaFilePerEstraiFile.Click += BtnTrovaFilePerEstraiFile_Click;
-            // 
             // label2
             // 
             label2.BackColor = Color.Turquoise;
@@ -507,14 +508,14 @@
             TbpCertificatiDaPdf.ResumeLayout(false);
             TbpCertificatiDaPdf.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCertificatiFilePdf).EndInit();
+            TbpEstraiFile.ResumeLayout(false);
+            TbpEstraiFile.PerformLayout();
             TbpCertificato.ResumeLayout(false);
             TbpCertificato.PerformLayout();
             TbpVerifica.ResumeLayout(false);
             TbpVerifica.PerformLayout();
             TbpVerificaFirma.ResumeLayout(false);
             TbpVerificaFirma.PerformLayout();
-            TbpEstraiFile.ResumeLayout(false);
-            TbpEstraiFile.PerformLayout();
             ResumeLayout(false);
         }
 

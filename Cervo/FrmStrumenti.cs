@@ -423,7 +423,7 @@ namespace Cervo
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Title = "Seleziona un file P7M";
-                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m|Tutti i file (*.*)|*.*";
+                openFileDialog.Filter = "File P7M (*.p7m)|*.p7m";
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
