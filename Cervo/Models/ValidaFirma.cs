@@ -444,7 +444,7 @@ namespace Cervo.Models
             /// <summary>
             /// Ottiene informazioni dettagliate sulla validità del certificato
             /// </summary>
-            public static CertificateValidationResult ValidateCertificate2(X509Certificate2 certificate)
+            public static CertificateValidationResult VerificaCertificato(X509Certificate2 certificate)
             {
                 var result = new CertificateValidationResult();
 

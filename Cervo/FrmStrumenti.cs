@@ -311,7 +311,7 @@ namespace Cervo
 
         private void BtnVerificaCertificatoFirmato_Click(object sender, EventArgs e)
         {
-            //TODO: Controllo
+             
             VerificaCertificatoDaFileFirmato(TxtPercorsoFileFirmatoDigitalmente.Text);
         }
 
@@ -368,7 +368,7 @@ namespace Cervo
 
             // Estrai il certificato firmante (il primo)
             X509Certificate2 signingCert = signedCms.Certificates[0];
-            var risultato = Certificati.ValidateCertificate2(signingCert);
+            var risultato = Certificati.VerificaCertificato(signingCert);
             string message = $"Stato validazione: {(risultato.IsValid ? "✓ VALIDO" : "✗ NON VALIDO")}\n\n";
 
             message += $"Messaggio: {risultato.ErrorMessage}\n\n";
@@ -443,7 +443,13 @@ namespace Cervo
                     return;
 
                 }
-                 
+                // Verifica se ha estensione .p7m
+                if (!TxtPercorsoNomeFilePerEstraiFile.Text.EndsWith(".p7m", StringComparison.OrdinalIgnoreCase))
+                {
+                    Utility.MessaggioInfo("Il file non ha estensione .p7m");
+                    return;
+
+                }
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
                     saveFileDialog.Title = "Salva contenuto estratto";

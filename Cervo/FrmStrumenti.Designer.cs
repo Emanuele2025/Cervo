@@ -69,6 +69,7 @@
             label2 = new Label();
             BtnChiudi = new Button();
             TltDescrizione = new ToolTip(components);
+            label6 = new Label();
             TbcFunzionalita.SuspendLayout();
             TbpEstraiCertifcato.SuspendLayout();
             TbpVerificaCertificato.SuspendLayout();
@@ -291,6 +292,7 @@
             BtnEstraFileDaP7m.Size = new Size(115, 23);
             BtnEstraFileDaP7m.TabIndex = 13;
             BtnEstraFileDaP7m.Text = "Estrai File";
+            TltDescrizione.SetToolTip(BtnEstraFileDaP7m, "Estrae il file dal file p7m");
             BtnEstraFileDaP7m.UseVisualStyleBackColor = true;
             BtnEstraFileDaP7m.Click += BtnEstraFileDaP7m_Click;
             // 
@@ -309,6 +311,7 @@
             BtnTrovaFilePerEstraiFile.Size = new Size(31, 23);
             BtnTrovaFilePerEstraiFile.TabIndex = 11;
             BtnTrovaFilePerEstraiFile.Text = "...";
+            TltDescrizione.SetToolTip(BtnTrovaFilePerEstraiFile, "Cartella del file p7m per rilevare il contenuto");
             BtnTrovaFilePerEstraiFile.UseVisualStyleBackColor = true;
             BtnTrovaFilePerEstraiFile.Click += BtnTrovaFilePerEstraiFile_Click;
             // 
@@ -424,6 +427,7 @@
             // 
             // TbpVerificaFirma
             // 
+            TbpVerificaFirma.Controls.Add(label6);
             TbpVerificaFirma.Controls.Add(BtnVerificaCertificatoFirmato);
             TbpVerificaFirma.Controls.Add(TxtPercorsoFileFirmatoDigitalmente);
             TbpVerificaFirma.Controls.Add(BtnTrovaCertificatoFileFirmato);
@@ -431,16 +435,16 @@
             TbpVerificaFirma.Name = "TbpVerificaFirma";
             TbpVerificaFirma.Size = new Size(792, 356);
             TbpVerificaFirma.TabIndex = 2;
-            TbpVerificaFirma.Text = "Verifica Firma";
+            TbpVerificaFirma.Text = "Verifica il certificato della prima firma";
             TbpVerificaFirma.UseVisualStyleBackColor = true;
             // 
             // BtnVerificaCertificatoFirmato
             // 
             BtnVerificaCertificatoFirmato.Location = new Point(8, 60);
             BtnVerificaCertificatoFirmato.Name = "BtnVerificaCertificatoFirmato";
-            BtnVerificaCertificatoFirmato.Size = new Size(75, 23);
+            BtnVerificaCertificatoFirmato.Size = new Size(112, 23);
             BtnVerificaCertificatoFirmato.TabIndex = 10;
-            BtnVerificaCertificatoFirmato.Text = "Verifica";
+            BtnVerificaCertificatoFirmato.Text = "Verifica file p7m";
             BtnVerificaCertificatoFirmato.UseVisualStyleBackColor = true;
             BtnVerificaCertificatoFirmato.Click += BtnVerificaCertificatoFirmato_Click;
             // 
@@ -487,6 +491,15 @@
             BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(8, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(142, 15);
+            label6.TabIndex = 19;
+            label6.Text = "Percorso e nome file p7m";
             // 
             // FrmStrumenti
             // 
@@ -561,5 +574,6 @@
         private Button BtnTrovaPdfFirmato;
         private DataGridView dtgCertificatiFilePdf;
         private ToolTip TltDescrizione;
+        private Label label6;
     }
 }
