@@ -27,6 +27,7 @@ namespace Cervo
         }
 
 
+        //TODO: Fare pagina per ricerca certificato
 
 
         /// <summary>
@@ -382,8 +383,7 @@ namespace Cervo
                 message += $"Thumbprint: {risultato.Thumbprint}\n";
             }
 
-            MessageBox.Show(message, "Risultato Validazione", MessageBoxButtons.OK,
-                risultato.IsValid ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
+            Utility.MessaggioInfo(message);
 
 
         }
