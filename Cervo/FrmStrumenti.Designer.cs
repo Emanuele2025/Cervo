@@ -63,13 +63,13 @@
             textBox1 = new TextBox();
             button3 = new Button();
             TbpVerificaFirma = new TabPage();
+            label6 = new Label();
             BtnVerificaCertificatoFirmato = new Button();
             TxtPercorsoFileFirmatoDigitalmente = new TextBox();
             BtnTrovaCertificatoFileFirmato = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
             TltDescrizione = new ToolTip(components);
-            label6 = new Label();
             TbcFunzionalita.SuspendLayout();
             TbpEstraiCertifcato.SuspendLayout();
             TbpVerificaCertificato.SuspendLayout();
@@ -88,9 +88,9 @@
             TbcFunzionalita.Controls.Add(TbpVerificaCertificato);
             TbcFunzionalita.Controls.Add(TbpCertificatiDaPdf);
             TbcFunzionalita.Controls.Add(TbpEstraiFile);
+            TbcFunzionalita.Controls.Add(TbpVerificaFirma);
             TbcFunzionalita.Controls.Add(TbpCertificato);
             TbcFunzionalita.Controls.Add(TbpVerifica);
-            TbcFunzionalita.Controls.Add(TbpVerificaFirma);
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
@@ -435,8 +435,17 @@
             TbpVerificaFirma.Name = "TbpVerificaFirma";
             TbpVerificaFirma.Size = new Size(792, 356);
             TbpVerificaFirma.TabIndex = 2;
-            TbpVerificaFirma.Text = "Verifica il certificato della prima firma";
+            TbpVerificaFirma.Text = "Verifica il primo certificato della firma";
             TbpVerificaFirma.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(8, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(142, 15);
+            label6.TabIndex = 19;
+            label6.Text = "Percorso e nome file p7m";
             // 
             // BtnVerificaCertificatoFirmato
             // 
@@ -452,6 +461,7 @@
             // 
             TxtPercorsoFileFirmatoDigitalmente.Location = new Point(8, 31);
             TxtPercorsoFileFirmatoDigitalmente.Name = "TxtPercorsoFileFirmatoDigitalmente";
+            TxtPercorsoFileFirmatoDigitalmente.ReadOnly = true;
             TxtPercorsoFileFirmatoDigitalmente.Size = new Size(311, 23);
             TxtPercorsoFileFirmatoDigitalmente.TabIndex = 9;
             // 
@@ -491,15 +501,6 @@
             BtnChiudi.TextAlign = ContentAlignment.MiddleRight;
             BtnChiudi.UseVisualStyleBackColor = true;
             BtnChiudi.Click += BtnChiudi_Click;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(8, 13);
-            label6.Name = "label6";
-            label6.Size = new Size(142, 15);
-            label6.TabIndex = 19;
-            label6.Text = "Percorso e nome file p7m";
             // 
             // FrmStrumenti
             // 

@@ -68,8 +68,7 @@ namespace Cervo
             }
             catch (Exception ex)
             {
-
-                throw;
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
 
 
@@ -738,12 +737,12 @@ namespace Cervo
 
                 foreach (SignerInfo signer in signedCms.SignerInfos)
                 {
-                    X509Certificate2 signerCert = null;
+                    X509Certificate2? signerCert = null;
 
                     // Cerca il certificato del firmatario
                     foreach (X509Certificate2 cert in signedCms.Certificates)
                     {
-                        if (cert.Thumbprint == signer.Certificate.Thumbprint)
+                        if (cert.Thumbprint == signer?.Certificate?.Thumbprint)
                         {
                             signerCert = cert;
                             break;
@@ -914,9 +913,9 @@ namespace Cervo
 
                                 DataFine = cert.NotAfter,
 
-                                Algoritmo = cert.SignatureAlgorithm.FriendlyName,
+                                Algoritmo = cert?.SignatureAlgorithm?.FriendlyName ?? "",
 
-                                Seriale = cert.SerialNumber
+                                Seriale = cert?.SerialNumber ?? ""
 
 
 
