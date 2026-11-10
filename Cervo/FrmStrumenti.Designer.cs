@@ -51,6 +51,11 @@
             BtnEstraFileDaP7m = new Button();
             TxtPercorsoNomeFilePerEstraiFile = new TextBox();
             BtnTrovaFilePerEstraiFile = new Button();
+            TbpVerificaFirma = new TabPage();
+            label6 = new Label();
+            BtnVerificaCertificatoFirmato = new Button();
+            TxtPercorsoFileFirmatoDigitalmente = new TextBox();
+            BtnTrovaCertificatoFileFirmato = new Button();
             TbpCertificato = new TabPage();
             BtnEsporta = new Button();
             BtnEstraiCertificato = new Button();
@@ -58,15 +63,6 @@
             BtnVerificaCertificato = new Button();
             TxtPercorsoFileFirmato = new TextBox();
             BtnTrovaFileP7m = new Button();
-            TbpVerifica = new TabPage();
-            BtnVerificaFirma = new Button();
-            textBox1 = new TextBox();
-            button3 = new Button();
-            TbpVerificaFirma = new TabPage();
-            label6 = new Label();
-            BtnVerificaCertificatoFirmato = new Button();
-            TxtPercorsoFileFirmatoDigitalmente = new TextBox();
-            BtnTrovaCertificatoFileFirmato = new Button();
             label2 = new Label();
             BtnChiudi = new Button();
             TltDescrizione = new ToolTip(components);
@@ -76,9 +72,8 @@
             TbpCertificatiDaPdf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtgCertificatiFilePdf).BeginInit();
             TbpEstraiFile.SuspendLayout();
-            TbpCertificato.SuspendLayout();
-            TbpVerifica.SuspendLayout();
             TbpVerificaFirma.SuspendLayout();
+            TbpCertificato.SuspendLayout();
             SuspendLayout();
             // 
             // TbcFunzionalita
@@ -90,7 +85,6 @@
             TbcFunzionalita.Controls.Add(TbpEstraiFile);
             TbcFunzionalita.Controls.Add(TbpVerificaFirma);
             TbcFunzionalita.Controls.Add(TbpCertificato);
-            TbcFunzionalita.Controls.Add(TbpVerifica);
             TbcFunzionalita.Location = new Point(0, 25);
             TbcFunzionalita.Name = "TbcFunzionalita";
             TbcFunzionalita.SelectedIndex = 0;
@@ -315,6 +309,56 @@
             BtnTrovaFilePerEstraiFile.UseVisualStyleBackColor = true;
             BtnTrovaFilePerEstraiFile.Click += BtnTrovaFilePerEstraiFile_Click;
             // 
+            // TbpVerificaFirma
+            // 
+            TbpVerificaFirma.Controls.Add(label6);
+            TbpVerificaFirma.Controls.Add(BtnVerificaCertificatoFirmato);
+            TbpVerificaFirma.Controls.Add(TxtPercorsoFileFirmatoDigitalmente);
+            TbpVerificaFirma.Controls.Add(BtnTrovaCertificatoFileFirmato);
+            TbpVerificaFirma.Location = new Point(4, 24);
+            TbpVerificaFirma.Name = "TbpVerificaFirma";
+            TbpVerificaFirma.Size = new Size(792, 356);
+            TbpVerificaFirma.TabIndex = 2;
+            TbpVerificaFirma.Text = "Verifica il primo certificato della firma";
+            TbpVerificaFirma.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(8, 13);
+            label6.Name = "label6";
+            label6.Size = new Size(142, 15);
+            label6.TabIndex = 19;
+            label6.Text = "Percorso e nome file p7m";
+            // 
+            // BtnVerificaCertificatoFirmato
+            // 
+            BtnVerificaCertificatoFirmato.Location = new Point(8, 60);
+            BtnVerificaCertificatoFirmato.Name = "BtnVerificaCertificatoFirmato";
+            BtnVerificaCertificatoFirmato.Size = new Size(112, 23);
+            BtnVerificaCertificatoFirmato.TabIndex = 10;
+            BtnVerificaCertificatoFirmato.Text = "Verifica file p7m";
+            BtnVerificaCertificatoFirmato.UseVisualStyleBackColor = true;
+            BtnVerificaCertificatoFirmato.Click += BtnVerificaCertificatoFirmato_Click;
+            // 
+            // TxtPercorsoFileFirmatoDigitalmente
+            // 
+            TxtPercorsoFileFirmatoDigitalmente.Location = new Point(8, 31);
+            TxtPercorsoFileFirmatoDigitalmente.Name = "TxtPercorsoFileFirmatoDigitalmente";
+            TxtPercorsoFileFirmatoDigitalmente.ReadOnly = true;
+            TxtPercorsoFileFirmatoDigitalmente.Size = new Size(311, 23);
+            TxtPercorsoFileFirmatoDigitalmente.TabIndex = 9;
+            // 
+            // BtnTrovaCertificatoFileFirmato
+            // 
+            BtnTrovaCertificatoFileFirmato.Location = new Point(325, 31);
+            BtnTrovaCertificatoFileFirmato.Name = "BtnTrovaCertificatoFileFirmato";
+            BtnTrovaCertificatoFileFirmato.Size = new Size(31, 23);
+            BtnTrovaCertificatoFileFirmato.TabIndex = 8;
+            BtnTrovaCertificatoFileFirmato.Text = "...";
+            BtnTrovaCertificatoFileFirmato.UseVisualStyleBackColor = true;
+            BtnTrovaCertificatoFileFirmato.Click += BtnTrovaCertificatoFileFirmato_Click;
+            // 
             // TbpCertificato
             // 
             TbpCertificato.Controls.Add(BtnEsporta);
@@ -386,95 +430,6 @@
             BtnTrovaFileP7m.UseVisualStyleBackColor = true;
             BtnTrovaFileP7m.Click += BtnTrovaFileP7m_Click;
             // 
-            // TbpVerifica
-            // 
-            TbpVerifica.Controls.Add(BtnVerificaFirma);
-            TbpVerifica.Controls.Add(textBox1);
-            TbpVerifica.Controls.Add(button3);
-            TbpVerifica.Location = new Point(4, 24);
-            TbpVerifica.Name = "TbpVerifica";
-            TbpVerifica.Padding = new Padding(3);
-            TbpVerifica.Size = new Size(792, 356);
-            TbpVerifica.TabIndex = 1;
-            TbpVerifica.Text = "Verifica Firma";
-            TbpVerifica.UseVisualStyleBackColor = true;
-            // 
-            // BtnVerificaFirma
-            // 
-            BtnVerificaFirma.Location = new Point(8, 62);
-            BtnVerificaFirma.Name = "BtnVerificaFirma";
-            BtnVerificaFirma.Size = new Size(75, 23);
-            BtnVerificaFirma.TabIndex = 7;
-            BtnVerificaFirma.Text = "Verifica";
-            BtnVerificaFirma.UseVisualStyleBackColor = true;
-            BtnVerificaFirma.Click += BtnVerificaFirma_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(8, 33);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(311, 23);
-            textBox1.TabIndex = 6;
-            // 
-            // button3
-            // 
-            button3.Location = new Point(325, 33);
-            button3.Name = "button3";
-            button3.Size = new Size(31, 23);
-            button3.TabIndex = 5;
-            button3.Text = "...";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // TbpVerificaFirma
-            // 
-            TbpVerificaFirma.Controls.Add(label6);
-            TbpVerificaFirma.Controls.Add(BtnVerificaCertificatoFirmato);
-            TbpVerificaFirma.Controls.Add(TxtPercorsoFileFirmatoDigitalmente);
-            TbpVerificaFirma.Controls.Add(BtnTrovaCertificatoFileFirmato);
-            TbpVerificaFirma.Location = new Point(4, 24);
-            TbpVerificaFirma.Name = "TbpVerificaFirma";
-            TbpVerificaFirma.Size = new Size(792, 356);
-            TbpVerificaFirma.TabIndex = 2;
-            TbpVerificaFirma.Text = "Verifica il primo certificato della firma";
-            TbpVerificaFirma.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(8, 13);
-            label6.Name = "label6";
-            label6.Size = new Size(142, 15);
-            label6.TabIndex = 19;
-            label6.Text = "Percorso e nome file p7m";
-            // 
-            // BtnVerificaCertificatoFirmato
-            // 
-            BtnVerificaCertificatoFirmato.Location = new Point(8, 60);
-            BtnVerificaCertificatoFirmato.Name = "BtnVerificaCertificatoFirmato";
-            BtnVerificaCertificatoFirmato.Size = new Size(112, 23);
-            BtnVerificaCertificatoFirmato.TabIndex = 10;
-            BtnVerificaCertificatoFirmato.Text = "Verifica file p7m";
-            BtnVerificaCertificatoFirmato.UseVisualStyleBackColor = true;
-            BtnVerificaCertificatoFirmato.Click += BtnVerificaCertificatoFirmato_Click;
-            // 
-            // TxtPercorsoFileFirmatoDigitalmente
-            // 
-            TxtPercorsoFileFirmatoDigitalmente.Location = new Point(8, 31);
-            TxtPercorsoFileFirmatoDigitalmente.Name = "TxtPercorsoFileFirmatoDigitalmente";
-            TxtPercorsoFileFirmatoDigitalmente.ReadOnly = true;
-            TxtPercorsoFileFirmatoDigitalmente.Size = new Size(311, 23);
-            TxtPercorsoFileFirmatoDigitalmente.TabIndex = 9;
-            // 
-            // BtnTrovaCertificatoFileFirmato
-            // 
-            BtnTrovaCertificatoFileFirmato.Location = new Point(325, 31);
-            BtnTrovaCertificatoFileFirmato.Name = "BtnTrovaCertificatoFileFirmato";
-            BtnTrovaCertificatoFileFirmato.Size = new Size(31, 23);
-            BtnTrovaCertificatoFileFirmato.TabIndex = 8;
-            BtnTrovaCertificatoFileFirmato.Text = "...";
-            BtnTrovaCertificatoFileFirmato.UseVisualStyleBackColor = true;
-            BtnTrovaCertificatoFileFirmato.Click += BtnTrovaCertificatoFileFirmato_Click;
-            // 
             // label2
             // 
             label2.BackColor = Color.Turquoise;
@@ -524,12 +479,10 @@
             ((System.ComponentModel.ISupportInitialize)dtgCertificatiFilePdf).EndInit();
             TbpEstraiFile.ResumeLayout(false);
             TbpEstraiFile.PerformLayout();
-            TbpCertificato.ResumeLayout(false);
-            TbpCertificato.PerformLayout();
-            TbpVerifica.ResumeLayout(false);
-            TbpVerifica.PerformLayout();
             TbpVerificaFirma.ResumeLayout(false);
             TbpVerificaFirma.PerformLayout();
+            TbpCertificato.ResumeLayout(false);
+            TbpCertificato.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -537,15 +490,11 @@
 
         private TabControl TbcFunzionalita;
         private TabPage TbpCertificato;
-        private TabPage TbpVerifica;
         private Button BtnVerificaCertificato;
         private TextBox TxtPercorsoFileFirmato;
         private Button BtnTrovaFileP7m;
         private RichTextBox rtbResults;
         private Button BtnEstraiCertificato;
-        private Button BtnVerificaFirma;
-        private TextBox textBox1;
-        private Button button3;
         private Label label2;
         private Button BtnChiudi;
         private TabPage TbpVerificaFirma;

@@ -94,7 +94,7 @@ namespace Cervo
 
         private void BtnVerificaCertificato_Click(object sender, EventArgs e)
         {
-            //TODO:
+
             //verificare se quando è scaduta è comunque errore la firma, ossia non valida.
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
@@ -311,7 +311,7 @@ namespace Cervo
 
         private void BtnVerificaCertificatoFirmato_Click(object sender, EventArgs e)
         {
-             
+
             VerificaCertificatoDaFileFirmato(TxtPercorsoFileFirmatoDigitalmente.Text);
         }
 
@@ -473,13 +473,13 @@ namespace Cervo
 
                         File.WriteAllBytes(saveFileDialog.FileName, FileRilevato);
                         Utility.MessaggioInfo($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}");
-                        
 
-                       
+
+
                     }
                 }
 
- 
+
 
 
 
@@ -796,27 +796,15 @@ namespace Cervo
         {
 
             if (hex.Length % 2 != 0)
-
                 throw new ArgumentException("Stringa esadecimale non valida.");
 
-
-
             byte[] bytes = new byte[hex.Length / 2];
-
             for (int i = 0; i < bytes.Length; i++)
-
                 bytes[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
-
-
 
             return bytes;
 
         }
-
-
-
-
-
 
 
 
@@ -866,7 +854,7 @@ namespace Cervo
         {
             try
             {
-                
+
                 dtgCertificatiFilePdf.DataSource = null;
 
                 //Verifico se è stato selezionato il file
@@ -941,13 +929,10 @@ namespace Cervo
             }
         }
 
-        
+        private void button3_Click(object sender, EventArgs e)
+        {
 
-
-
-
-
-
+        }
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
