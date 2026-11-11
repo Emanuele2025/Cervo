@@ -24,6 +24,7 @@ namespace Cervo
         private void FrmStrumenti_Load(object sender, EventArgs e)
         {
             this.Text = Utility.TitoloFinestra;
+            
         }
 
 
@@ -58,25 +59,7 @@ namespace Cervo
             }
         }
 
-        private void TrovaCertificato()
-        {
-
-            try
-            {
-                X509Store storeX509 = new X509Store(StoreName.Root, StoreLocation.LocalMachine);
-                storeX509.Open(OpenFlags.MaxAllowed);
-                X509Certificate2 certificato = storeX509.Certificates.Find(X509FindType.FindBySubjectName, "Emanuele", true)[0];
-            }
-            catch (Exception ex)
-            {
-                Utility.MessaggioErrore(Utility.Errore + ex.Message);
-            }
-
-
-
-
-
-        }
+        
 
         private void BtnTrovaFileP7m_Click(object sender, EventArgs e)
         {
