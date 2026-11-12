@@ -27,9 +27,7 @@ namespace Cervo
             
         }
 
-
-        //TODO: Fare pagina per ricerca certificato
-
+         
 
         /// <summary>
         /// Estrae il file originale dal P7M
@@ -140,7 +138,7 @@ namespace Cervo
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
                 Utility.MessaggioInfo(("Selezionare un file P7M."));
-                //MessageBox.Show("Selezionare un file P7M.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
                 return;
             }
 
