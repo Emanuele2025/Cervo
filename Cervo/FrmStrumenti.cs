@@ -171,10 +171,7 @@ namespace Cervo
             }
         }
 
-        private void BtnVerificaFirma_Click(object sender, EventArgs e)
-        {
-            //   ValidaFirma.
-        }
+        
 
         private void BtnChiudi_Click(object sender, EventArgs e)
         {
