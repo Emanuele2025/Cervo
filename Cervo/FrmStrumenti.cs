@@ -51,9 +51,11 @@ namespace Cervo
                 File.WriteAllBytes(outputFilePath, signatureInfo.OriginalContent);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
                 return false;
+
             }
         }
 
@@ -146,7 +148,7 @@ namespace Cervo
             {
                 using (SaveFileDialog saveFileDialog = new SaveFileDialog())
                 {
-                    saveFileDialog.Title = "Salva contenuto estratto";
+                    saveFileDialog.Title = "Salva il contenuto estratto";
                     saveFileDialog.FileName = Path.GetFileNameWithoutExtension(TxtPercorsoFileFirmato.Text);
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -738,7 +740,7 @@ namespace Cervo
                             Thumbprint = signerCert.Thumbprint,
                             SerialNumber = signerCert.SerialNumber,
                             IsExpired = signerCert.NotAfter < DateTime.Now,
-                            SigningTime = signer.SignedAttributes.Cast<CryptographicAttributeObject>()
+                            SigningTime = signer?.SignedAttributes.Cast<CryptographicAttributeObject>()
                                 .Where(a => a.Oid.Value == "1.2.840.113549.1.9.3")
                                 .FirstOrDefault() != null
                         };
