@@ -155,13 +155,11 @@ namespace Cervo
                     {
                         if (ExtractContentFromP7M(TxtPercorsoFileFirmato.Text, saveFileDialog.FileName))
                         {
-                            MessageBox.Show($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}",
-                                "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Utility.MessaggioInfo($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}" );
                         }
                         else
                         {
-                            MessageBox.Show("Errore nell'estrazione del contenuto.",
-                                "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Utility.MessaggioErrore("Errore nell'estrazione del contenuto." );
                         }
                     }
                 }
