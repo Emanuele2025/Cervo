@@ -24,10 +24,10 @@ namespace Cervo
         private void FrmStrumenti_Load(object sender, EventArgs e)
         {
             this.Text = Utility.TitoloFinestra;
-            
+
         }
 
-         
+
 
         /// <summary>
         /// Estrae il file originale dal P7M
@@ -59,7 +59,7 @@ namespace Cervo
             }
         }
 
-        
+
 
         private void BtnTrovaFileP7m_Click(object sender, EventArgs e)
         {
@@ -140,7 +140,7 @@ namespace Cervo
             if (string.IsNullOrEmpty(TxtPercorsoFileFirmato.Text))
             {
                 Utility.MessaggioInfo(("Selezionare un file P7M."));
-                
+
                 return;
             }
 
@@ -155,11 +155,11 @@ namespace Cervo
                     {
                         if (ExtractContentFromP7M(TxtPercorsoFileFirmato.Text, saveFileDialog.FileName))
                         {
-                            Utility.MessaggioInfo($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}" );
+                            Utility.MessaggioInfo($"Contenuto estratto con successo!\n\nPercorso: {saveFileDialog.FileName}");
                         }
                         else
                         {
-                            Utility.MessaggioErrore("Errore nell'estrazione del contenuto." );
+                            Utility.MessaggioErrore("Errore nell'estrazione del contenuto.");
                         }
                     }
                 }
@@ -171,7 +171,7 @@ namespace Cervo
             }
         }
 
-        
+
 
         private void BtnChiudi_Click(object sender, EventArgs e)
         {
@@ -867,28 +867,33 @@ namespace Cervo
 
                         foreach (var firma in cms.SignerInfos)
                         {
-                            X509Certificate2 cert = firma.Certificate;
-                            DtoFirmaDigitale dtoCertificato = new DtoFirmaDigitale()
+                            X509Certificate2? cert = firma?.Certificate;
+                            if (cert != null)
                             {
 
-                                Oggetto = cert.Subject,
 
-                                EmessoDa = cert.Issuer,
+                                DtoFirmaDigitale dtoCertificato = new DtoFirmaDigitale()
+                                {
 
-                                DataInizio = cert.NotBefore,
+                                    Oggetto = cert.Subject,
 
-                                DataFine = cert.NotAfter,
+                                    EmessoDa = cert.Issuer,
 
-                                Algoritmo = cert?.SignatureAlgorithm?.FriendlyName ?? "",
+                                    DataInizio = cert.NotBefore,
 
-                                Seriale = cert?.SerialNumber ?? ""
+                                    DataFine = cert.NotAfter,
+
+                                    Algoritmo = cert?.SignatureAlgorithm?.FriendlyName ?? "",
+
+                                    Seriale = cert?.SerialNumber ?? ""
 
 
 
 
 
-                            };
-                            certificatiTrovati.Add(dtoCertificato);
+                                };
+                                certificatiTrovati.Add(dtoCertificato);
+                            }
                         }
                     }
                     catch (Exception ex)
