@@ -34,6 +34,9 @@
             label2 = new Label();
             BtnChiudi = new Button();
             BtnFirmaClassiNet = new Button();
+            label3 = new Label();
+            TxtPercorsoNomeFile = new TextBox();
+            BtnTrovaFileDaFirmare = new Button();
             SuspendLayout();
             // 
             // label1
@@ -100,11 +103,41 @@
             BtnFirmaClassiNet.UseVisualStyleBackColor = true;
             BtnFirmaClassiNet.Click += BtnFirmaClassiNet_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(12, 148);
+            label3.Name = "label3";
+            label3.Size = new Size(172, 15);
+            label3.TabIndex = 18;
+            label3.Text = "Percorso e nome file da firmare";
+            // 
+            // TxtPercorsoNomeFile
+            // 
+            TxtPercorsoNomeFile.Location = new Point(12, 166);
+            TxtPercorsoNomeFile.Name = "TxtPercorsoNomeFile";
+            TxtPercorsoNomeFile.ReadOnly = true;
+            TxtPercorsoNomeFile.Size = new Size(311, 23);
+            TxtPercorsoNomeFile.TabIndex = 16;
+            // 
+            // BtnTrovaFileDaFirmare
+            // 
+            BtnTrovaFileDaFirmare.Location = new Point(329, 166);
+            BtnTrovaFileDaFirmare.Name = "BtnTrovaFileDaFirmare";
+            BtnTrovaFileDaFirmare.Size = new Size(31, 23);
+            BtnTrovaFileDaFirmare.TabIndex = 15;
+            BtnTrovaFileDaFirmare.Text = "...";
+            BtnTrovaFileDaFirmare.UseVisualStyleBackColor = true;
+            BtnTrovaFileDaFirmare.Click += BtnTrovaFileDaFirmare_Click;
+            // 
             // FrmFirma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(828, 450);
+            Controls.Add(label3);
+            Controls.Add(TxtPercorsoNomeFile);
+            Controls.Add(BtnTrovaFileDaFirmare);
             Controls.Add(BtnFirmaClassiNet);
             Controls.Add(BtnChiudi);
             Controls.Add(label2);
@@ -130,5 +163,8 @@
         private Label label2;
         private Button BtnChiudi;
         private Button BtnFirmaClassiNet;
+        private Label label3;
+        private TextBox TxtPercorsoNomeFile;
+        private Button BtnTrovaFileDaFirmare;
     }
 }

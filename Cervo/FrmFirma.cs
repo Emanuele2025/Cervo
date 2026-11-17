@@ -154,6 +154,20 @@ namespace Cervo
                 throw;
             }
         }
+
+        private void BtnTrovaFileDaFirmare_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Seleziona un file P7M";
+                openFileDialog.Filter = "Tutti i file (*.*)|*.*";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    TxtPercorsoNomeFile.Text = openFileDialog.FileName;
+                }
+            }
+        }
     }
 
 
