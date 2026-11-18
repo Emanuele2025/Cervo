@@ -48,5 +48,13 @@ namespace Cervo
 
 
         }
+
+        private void MniFirma_Click(object sender, EventArgs e)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            FrmFirma firma = new FrmFirma();
+            firma.ShowDialog();
+            Cursor.Current = Cursors.Default;
+        }
     }
 }

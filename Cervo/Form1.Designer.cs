@@ -74,7 +74,7 @@
             // 
             MniEsci.Image = Properties.Resources.Esci;
             MniEsci.Name = "MniEsci";
-            MniEsci.Size = new Size(94, 22);
+            MniEsci.Size = new Size(180, 22);
             MniEsci.Text = "Esci";
             MniEsci.Click += MniEsci_Click;
             // 
@@ -105,6 +105,7 @@
             MniFirma.Name = "MniFirma";
             MniFirma.Size = new Size(180, 22);
             MniFirma.Text = "Firma...";
+            MniFirma.Click += MniFirma_Click;
             // 
             // informazioniToolStripMenuItem
             // 
@@ -117,7 +118,7 @@
             // 
             MniInfo.Image = Properties.Resources.Informazioni;
             MniInfo.Name = "MniInfo";
-            MniInfo.Size = new Size(180, 22);
+            MniInfo.Size = new Size(104, 22);
             MniInfo.Text = "Info...";
             MniInfo.ToolTipText = "Informazioni sul programma";
             MniInfo.Click += MniInfo_Click;
