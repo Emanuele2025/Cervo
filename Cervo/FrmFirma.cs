@@ -20,7 +20,7 @@ namespace Cervo
 
         private void FrmFirma_Load(object sender, EventArgs e)
         {
-            //3 ottobre rivedere
+             
             this.Text = Utility.TitoloFinestra;
             LoadCertificates(CmbCertificati);
         }
@@ -125,8 +125,13 @@ namespace Cervo
             try
             {
                 //Frammento di codice da verificare
+                if (TxtPercorsoNomeFile.Text.Trim() == "")
+                {
+                    Utility.MessaggioInfo("Selezionare un file.");
+                    return;
+                }
 
-                byte[] dati = File.ReadAllBytes(@"C:\varie\fileDaFirmare.jpg");
+                byte[] dati = File.ReadAllBytes(TxtPercorsoNomeFile.Text.Trim());
 
                 using var cert = ((CertificateItem)CmbCertificati.SelectedItem).Certificate;
                 if (!cert.HasPrivateKey)
