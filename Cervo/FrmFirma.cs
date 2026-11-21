@@ -146,7 +146,7 @@ namespace Cervo
                 };
 
                 cms.ComputeSignature(firmatario);
-                File.WriteAllBytes(@"C:\varie\fileDaFirmare.jpg" + ".p7m", cms.Encode());
+                File.WriteAllBytes(TxtPercorsoNomeFile.Text.Trim() + ".p7m", cms.Encode());
 
 
 
@@ -155,8 +155,7 @@ namespace Cervo
             }
             catch (Exception ex)
             {
-
-                throw;
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
         }
 
