@@ -98,6 +98,7 @@
             MniStrumenti.Name = "MniStrumenti";
             MniStrumenti.Size = new Size(180, 22);
             MniStrumenti.Text = "Strumenti...";
+            MniStrumenti.ToolTipText = "Apre la finestra con la quale eseguire determinate operazioni";
             MniStrumenti.Click += MniStrumenti_Click;
             // 
             // MniFirma
@@ -105,6 +106,7 @@
             MniFirma.Name = "MniFirma";
             MniFirma.Size = new Size(180, 22);
             MniFirma.Text = "Firma...";
+            MniFirma.ToolTipText = "Apre la finestra per la firma dei file";
             MniFirma.Click += MniFirma_Click;
             // 
             // informazioniToolStripMenuItem
@@ -118,7 +120,7 @@
             // 
             MniInfo.Image = Properties.Resources.Informazioni;
             MniInfo.Name = "MniInfo";
-            MniInfo.Size = new Size(104, 22);
+            MniInfo.Size = new Size(180, 22);
             MniInfo.Text = "Info...";
             MniInfo.ToolTipText = "Informazioni sul programma";
             MniInfo.Click += MniInfo_Click;
