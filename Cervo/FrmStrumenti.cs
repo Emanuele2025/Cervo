@@ -339,7 +339,7 @@ namespace Cervo
             // Verifica se sono presenti certificati
             if (signedCms.Certificates.Count == 0)
             {
-                Utility.MessaggioInfo("INessun certificato trovato nel file .p7m");
+                Utility.MessaggioInfo("Nessun certificato trovato nel file .p7m");
                 return;
 
             }
@@ -912,10 +912,7 @@ namespace Cervo
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
     /// <summary>
     /// Risultato della verifica dello stato del certificato in un file .p7m
