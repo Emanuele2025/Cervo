@@ -37,6 +37,10 @@
             label3 = new Label();
             TxtPercorsoNomeFile = new TextBox();
             BtnTrovaFileDaFirmare = new Button();
+            label4 = new Label();
+            TxtPercorsoNomeFileXML = new TextBox();
+            BtnTrovaFileXML = new Button();
+            BtnFirmaXML = new Button();
             SuspendLayout();
             // 
             // label1
@@ -130,11 +134,51 @@
             BtnTrovaFileDaFirmare.UseVisualStyleBackColor = true;
             BtnTrovaFileDaFirmare.Click += BtnTrovaFileDaFirmare_Click;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(12, 233);
+            label4.Name = "label4";
+            label4.Size = new Size(199, 15);
+            label4.TabIndex = 21;
+            label4.Text = "Percorso e nome file da firmare XML";
+            // 
+            // TxtPercorsoNomeFileXML
+            // 
+            TxtPercorsoNomeFileXML.Location = new Point(12, 251);
+            TxtPercorsoNomeFileXML.Name = "TxtPercorsoNomeFileXML";
+            TxtPercorsoNomeFileXML.ReadOnly = true;
+            TxtPercorsoNomeFileXML.Size = new Size(311, 23);
+            TxtPercorsoNomeFileXML.TabIndex = 20;
+            // 
+            // BtnTrovaFileXML
+            // 
+            BtnTrovaFileXML.Location = new Point(329, 251);
+            BtnTrovaFileXML.Name = "BtnTrovaFileXML";
+            BtnTrovaFileXML.Size = new Size(31, 23);
+            BtnTrovaFileXML.TabIndex = 19;
+            BtnTrovaFileXML.Text = "...";
+            BtnTrovaFileXML.UseVisualStyleBackColor = true;
+            BtnTrovaFileXML.Click += BtnTrovaFileXML_Click;
+            // 
+            // BtnFirmaXML
+            // 
+            BtnFirmaXML.Location = new Point(12, 280);
+            BtnFirmaXML.Name = "BtnFirmaXML";
+            BtnFirmaXML.Size = new Size(99, 23);
+            BtnFirmaXML.TabIndex = 22;
+            BtnFirmaXML.Text = "Firma XML";
+            BtnFirmaXML.UseVisualStyleBackColor = true;
+            // 
             // FrmFirma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(828, 450);
+            Controls.Add(BtnFirmaXML);
+            Controls.Add(label4);
+            Controls.Add(TxtPercorsoNomeFileXML);
+            Controls.Add(BtnTrovaFileXML);
             Controls.Add(label3);
             Controls.Add(TxtPercorsoNomeFile);
             Controls.Add(BtnTrovaFileDaFirmare);
@@ -166,5 +210,9 @@
         private Label label3;
         private TextBox TxtPercorsoNomeFile;
         private Button BtnTrovaFileDaFirmare;
+        private Label label4;
+        private TextBox TxtPercorsoNomeFileXML;
+        private Button BtnTrovaFileXML;
+        private Button BtnFirmaXML;
     }
 }

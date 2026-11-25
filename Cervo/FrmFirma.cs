@@ -20,7 +20,7 @@ namespace Cervo
 
         private void FrmFirma_Load(object sender, EventArgs e)
         {
-             
+
             this.Text = Utility.TitoloFinestra;
             LoadCertificates(CmbCertificati);
         }
@@ -171,6 +171,11 @@ namespace Cervo
                     TxtPercorsoNomeFile.Text = openFileDialog.FileName;
                 }
             }
+        }
+
+        private void BtnTrovaFileXML_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
