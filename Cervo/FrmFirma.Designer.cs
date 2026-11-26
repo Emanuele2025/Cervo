@@ -169,6 +169,7 @@
             BtnFirmaXML.TabIndex = 22;
             BtnFirmaXML.Text = "Firma XML";
             BtnFirmaXML.UseVisualStyleBackColor = true;
+            BtnFirmaXML.Click += BtnFirmaXML_Click;
             // 
             // FrmFirma
             // 

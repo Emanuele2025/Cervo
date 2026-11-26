@@ -175,7 +175,28 @@ namespace Cervo
 
         private void BtnTrovaFileXML_Click(object sender, EventArgs e)
         {
+            try
+            {
 
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        private void BtnFirmaXML_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 
