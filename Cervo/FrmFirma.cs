@@ -6,8 +6,10 @@ using System.Drawing;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace Cervo
 {
@@ -190,13 +192,72 @@ namespace Cervo
         {
             try
             {
+                string filePath = "input.xml"; // Il percorso del file XML da firmare
+                string outputFilePath = "signed_output.xml"; // Il percorso in cui salvare il file XML firmato
 
+                // Carica un certificato dal Personal Store (modifica questo codice per caricare il certificato secondo le tue esigenze)
+                X509Store store = new X509Store(StoreLocation.CurrentUser);
+                store.Open(OpenFlags.ReadOnly);
+                X509Certificate2Collection certs = store.Certificates.Find(X509FindType.FindBySubjectName, "IlTuoNomeCertificato", false);
+                X509Certificate2 cert = certs[0];
+                store.Close();
+
+                SignXmlFile(filePath, outputFilePath, cert);
             }
             catch (Exception ex)
             {
 
                 throw;
             }
+        }
+        public   void SignXmlFile(string filePath, string outputFilePath, X509Certificate2 certificate)
+        {
+            // Carica il documento XML
+            XmlDocument document = new XmlDocument
+            {
+                PreserveWhitespace = true
+            };
+            document.Load(filePath);
+
+            // Crea un oggetto SignedXml
+            SignedXml signedXml = new SignedXml(document);
+
+            // Aggiungi la chiave del certificato per la firma
+            signedXml.SigningKey = certificate.PrivateKey;
+
+            // Crea una referenza per il file XML
+            Reference reference = new Reference
+            {
+                Uri = ""
+            };
+
+            // Aggiungi un transform per canonizzare l'XML per la firma
+            XmlDsigEnvelopedSignatureTransform env = new XmlDsigEnvelopedSignatureTransform();
+            reference.AddTransform(env);
+
+            // Aggiungi la referenza al documento SignedXml
+            signedXml.AddReference(reference);
+
+            // Crea un key info con i dettagli del certificato
+            KeyInfo keyInfo = new KeyInfo();
+            keyInfo.AddClause(new KeyInfoX509Data(certificate));
+
+            // Aggiungi il key info al documento SignedXml
+            signedXml.KeyInfo = keyInfo;
+
+            // Calcola la firma
+            signedXml.ComputeSignature();
+
+            // Recupera la firma sotto forma di XML
+            XmlElement xmlDigitalSignature = signedXml.GetXml();
+
+            // Aggiungi la firma al documento XML
+            document.DocumentElement.AppendChild(document.ImportNode(xmlDigitalSignature, true));
+
+            // Salva il documento firmato
+            document.Save(outputFilePath);
+
+            Console.WriteLine("XML signed and saved at: " + outputFilePath);
         }
     }
 
