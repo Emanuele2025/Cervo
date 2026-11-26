@@ -41,6 +41,7 @@
             TxtPercorsoNomeFileXML = new TextBox();
             BtnTrovaFileXML = new Button();
             BtnFirmaXML = new Button();
+            BtnFirmaXML2 = new Button();
             SuspendLayout();
             // 
             // label1
@@ -171,11 +172,22 @@
             BtnFirmaXML.UseVisualStyleBackColor = true;
             BtnFirmaXML.Click += BtnFirmaXML_Click;
             // 
+            // BtnFirmaXML2
+            // 
+            BtnFirmaXML2.Location = new Point(126, 280);
+            BtnFirmaXML2.Name = "BtnFirmaXML2";
+            BtnFirmaXML2.Size = new Size(85, 23);
+            BtnFirmaXML2.TabIndex = 23;
+            BtnFirmaXML2.Text = "Firma XML 2";
+            BtnFirmaXML2.UseVisualStyleBackColor = true;
+            BtnFirmaXML2.Click += BtnFirmaXML2_Click;
+            // 
             // FrmFirma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(828, 450);
+            Controls.Add(BtnFirmaXML2);
             Controls.Add(BtnFirmaXML);
             Controls.Add(label4);
             Controls.Add(TxtPercorsoNomeFileXML);
@@ -215,5 +227,6 @@
         private TextBox TxtPercorsoNomeFileXML;
         private Button BtnTrovaFileXML;
         private Button BtnFirmaXML;
+        private Button BtnFirmaXML2;
     }
 }

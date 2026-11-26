@@ -210,7 +210,7 @@ namespace Cervo
                 throw;
             }
         }
-        public   void SignXmlFile(string filePath, string outputFilePath, X509Certificate2 certificate)
+        public void SignXmlFile(string filePath, string outputFilePath, X509Certificate2 certificate)
         {
             // Carica il documento XML
             XmlDocument document = new XmlDocument
@@ -258,6 +258,11 @@ namespace Cervo
             document.Save(outputFilePath);
 
             Console.WriteLine("XML signed and saved at: " + outputFilePath);
+        }
+
+        private void BtnFirmaXML2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
