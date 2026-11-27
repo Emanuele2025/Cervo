@@ -214,8 +214,7 @@ namespace Cervo
             }
             catch (Exception ex)
             {
-
-                throw;
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
         }
         public void SignXmlFile(string filePath, string outputFilePath, X509Certificate2 certificate)
