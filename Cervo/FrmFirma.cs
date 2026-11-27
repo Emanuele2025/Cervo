@@ -179,12 +179,20 @@ namespace Cervo
         {
             try
             {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Title = "Seleziona un file XML";
+                    openFileDialog.Filter = "File XML (*.*)|*.xml";
 
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        TxtPercorsoNomeFileXML.Text = openFileDialog.FileName;
+                    }
+                }
             }
             catch (Exception ex)
             {
-
-                throw;
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
             }
         }
 
