@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
@@ -204,12 +205,12 @@ namespace Cervo
                 string outputFilePath = "signed_output.xml"; // Il percorso in cui salvare il file XML firmato
 
                 // Carica un certificato dal Personal Store (modifica questo codice per caricare il certificato secondo le tue esigenze)
-                X509Store store = new X509Store(StoreLocation.CurrentUser);
-                store.Open(OpenFlags.ReadOnly);
-                X509Certificate2Collection certs = store.Certificates.Find(X509FindType.FindBySubjectName, "IlTuoNomeCertificato", false);
-                X509Certificate2 cert = certs[0];
-                store.Close();
-
+                //X509Store store = new X509Store(StoreLocation.CurrentUser);
+                //store.Open(OpenFlags.ReadOnly);
+                //X509Certificate2Collection certs = store.Certificates.Find(X509FindType.FindBySubjectName, "IlTuoNomeCertificato", false);
+                //X509Certificate2 cert = certs[0];
+                //store.Close();
+                var cert = ((CertificateItem)CmbCertificati.SelectedItem).Certificate;
                 SignXmlFile(filePath, outputFilePath, cert);
             }
             catch (Exception ex)
@@ -269,7 +270,18 @@ namespace Cervo
 
         private void BtnFirmaXML2_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                string nomeFileXMlFirmato = Path.GetFileNameWithoutExtension(TxtPercorsoNomeFileXML.Text.Trim());
+                nomeFileXMlFirmato += "_Firmato.xml";
+                nomeFileXMlFirmato = Path.Combine(Path.GetDirectoryName(TxtPercorsoNomeFileXML.Text.Trim()), nomeFileXMlFirmato);
+                var cert = ((CertificateItem)CmbCertificati.SelectedItem).Certificate;
+                SignXmlFile(TxtPercorsoNomeFileXML.Text.Trim(), nomeFileXMlFirmato, cert);
+            }
+            catch (Exception ex)
+            {
+                Utility.MessaggioErrore(Utility.Errore + ex.Message);
+            }
         }
 
         public static void SignXmlFile2(string inputFile, string outputFile, X509Certificate2 cert)
