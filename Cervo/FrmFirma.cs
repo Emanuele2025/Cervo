@@ -271,6 +271,34 @@ namespace Cervo
         {
 
         }
+
+        public static void SignXmlFile2(string inputFile, string outputFile, X509Certificate2 cert)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.PreserveWhitespace = true;
+            doc.Load(inputFile);
+
+            // Crea l'oggetto SignedXml
+            SignedXml signedXml = new SignedXml(doc);
+            signedXml.SigningKey = cert.GetRSAPrivateKey();
+
+            // Crea una referenza a tutto il documento (firma l'intero file)
+            Reference reference = new Reference();
+            reference.Uri = "";
+            signedXml.AddReference(reference);
+
+            // Calcola la firma
+            signedXml.ComputeSignature();
+
+            // Aggiunge l'elemento XML della firma al documento
+            XmlElement xmlDigitalSignature = signedXml.GetXml();
+            doc.DocumentElement.AppendChild(doc.ImportNode(xmlDigitalSignature, true));
+
+            doc.Save(outputFile);
+        }
+
+
+
     }
 
 
